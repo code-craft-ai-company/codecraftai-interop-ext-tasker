@@ -17,6 +17,10 @@ packages = [{include="mojo", from="source/packages"}]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<4.0"
+automojo-interop = { git = "https://github.com/automationmojo/automojo-interop.git", branch = "main" }
+automojo-landscaping = { git = "https://github.com/automationmojo/automojo-landscaping.git", branch = "main" }
+automojo-testplus = { git = "https://github.com/automationmojo/automojo-testplus.git", branch = "main" }
+
 
 [tool.poetry.group.dev.dependencies]
 
