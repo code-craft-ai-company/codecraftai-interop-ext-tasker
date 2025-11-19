@@ -58,7 +58,7 @@ class LinuxTaskerClientCoordinator(ClientCoordinatorBase):
         return results
 
 
-    def create_ssh_agent(self, device: LinuxClient, device_info: Dict[str, Any], host: str, cred: BaseCredential,
+    def create_ssh_agent(self, device: LinuxTaskerClient, device_info: Dict[str, Any], host: str, cred: BaseCredential,
                          users: Optional[dict] = None, port: int = 22, pty_params: Optional[dict] = None):
         """
             Attaches an SSH agent extension to a Linux client.
