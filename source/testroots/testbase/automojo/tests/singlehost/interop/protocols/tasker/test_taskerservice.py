@@ -1,4 +1,5 @@
 import os
+from collections import OrderedDict
 import tempfile
 import automojo.testbase as testbase
 from automojo.errors.exceptions import SemanticError
@@ -7,7 +8,17 @@ from automojo.interop.protocols.tasker.taskerservice import TaskerService
 
 def create_service(tmpdir: str) -> TaskerService:
     TaskerService.logging_directory = tmpdir
+    TaskerService.active_sessions = OrderedDict()
     return TaskerService()
+
+
+class DummySession:
+    def __init__(self):
+        self.shutdown_called = False
+
+    def shutdown(self):
+        self.shutdown_called = True
+        return
 
 
 def test_locked_get_session_validations() -> None:
@@ -79,4 +90,34 @@ def test_file_and_folder_exists() -> None:
     testbase.assert_equal(service.exposed_file_exists(filename=fname + "x"), False)
     testbase.assert_equal(service.exposed_folder_exists(folder=folder), True)
     testbase.assert_equal(service.exposed_folder_exists(folder=folder + "x"), False)
+    return
+
+
+def test_session_close_all_returns_none_when_no_sessions() -> None:
+    tmpdir = tempfile.mkdtemp()
+    service = create_service(tmpdir)
+
+    closed_session = service.exposed_session_close_all()
+
+    testbase.assert_equal(closed_session is None, True)
+    testbase.assert_equal(len(TaskerService.active_sessions), 0)
+    return
+
+
+def test_session_close_all_returns_last_closed_session() -> None:
+    tmpdir = tempfile.mkdtemp()
+    service = create_service(tmpdir)
+
+    sess1 = DummySession()
+    sess2 = DummySession()
+
+    TaskerService.active_sessions["sess1"] = sess1
+    TaskerService.active_sessions["sess2"] = sess2
+
+    closed_session = service.exposed_session_close_all()
+
+    testbase.assert_equal(closed_session, "sess2")
+    testbase.assert_equal(len(TaskerService.active_sessions), 0)
+    testbase.assert_equal(sess1.shutdown_called, True)
+    testbase.assert_equal(sess2.shutdown_called, True)
     return

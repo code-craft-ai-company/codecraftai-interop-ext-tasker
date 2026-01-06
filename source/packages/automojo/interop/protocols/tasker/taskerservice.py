@@ -563,12 +563,15 @@ class TaskerService(rpyc.Service):
 
         return session_id
 
-    def exposed_session_close_all(self) -> str:
+    def exposed_session_close_all(self) -> Optional[str]:
         """
             Close all active sessions and return the last closed session id.
+
+            :returns: The identifier of the last session closed or ``None`` if no sessions were active.
         """
 
         this_type = type(self)
+        last_session_id = None
 
         this_type.service_lock.acquire()
         try:
@@ -582,11 +585,12 @@ class TaskerService(rpyc.Service):
 
             for session_id in closed_sessions:
                 del this_type.active_sessions[session_id]
+                last_session_id = session_id
 
         finally:
             this_type.service_lock.release()
 
-        return session_id
+        return last_session_id
 
 
     def exposed_session_open(self, *, worker: str, wref: str, output_directory: Optional[str] = None,
