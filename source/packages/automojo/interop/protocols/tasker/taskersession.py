@@ -171,6 +171,22 @@ class TaskerSession:
 
         return
 
+    @staticmethod
+    def _coerce_progress_code(status) -> ProgressCode:
+        """
+            Normalize a stored status value to a :class:`ProgressCode` instance.
+        """
+        rtnval = status
+        if not isinstance(status, ProgressCode):
+            
+            try:
+                rtnval = ProgressCode(status)
+            except Exception as exc:
+                errmsg = f"Unknown progress code value '{status}'."
+                raise SemanticError(errmsg) from exc
+
+        return rtnval
+
     @property
     def aspects(self):
         """
@@ -301,7 +317,7 @@ class TaskerSession:
                 tasking: Tasking = self._taskings_table[tasking_id]
 
                 if tasking_id in self._status_table:
-                    tstatus = self._status_table[tasking_id]
+                    tstatus = self._coerce_progress_code(self._status_table[tasking_id])
 
                     if tstatus in [
                         ProgressCode.NotStarted,
@@ -447,7 +463,7 @@ class TaskerSession:
 
             self._session_lock.acquire()
             try:
-                self.statuses[tasking_id] = str(ProgressCode.NotStarted.value)
+                self.statuses[tasking_id] = ProgressCode.NotStarted
                 self.taskings[tasking_id] = tasking
             finally:
                 self._session_lock.release()
@@ -544,13 +560,13 @@ class TaskerSession:
                 result = self._results_table[tasking_id]
             else:
                 if tasking_id in self._taskings_table:
-                    tstatus = self._status_table[tasking_id]
+                    tstatus = self._coerce_progress_code(self._status_table[tasking_id])
 
-                    if not (
-                        tstatus == ProgressCode.Completed
-                        or tstatus == ProgressCode.Errored
-                        or tstatus == ProgressCode.Failed
-                    ):
+                    if tstatus not in [
+                        ProgressCode.Completed,
+                        ProgressCode.Errored,
+                        ProgressCode.Failed,
+                    ]:
                         errmsg = f"The task for tasking_id='{tasking_id}' is not in a completed state. The results are not yet available."
                         raise SemanticError(errmsg)
                 else:
@@ -575,7 +591,10 @@ class TaskerSession:
         self._session_lock.acquire()
         try:
             if tasking_id in self._status_table:
-                tstatus = str(self._status_table[tasking_id])
+                tstatus = self._coerce_progress_code(self._status_table[tasking_id])
+                tstatus = tstatus.value
+            else:
+                tstatus = None
         finally:
             self._session_lock.release()
 
@@ -595,13 +614,13 @@ class TaskerSession:
         self._session_lock.acquire()
         try:
             if tasking_id in self._status_table:
-                tstatus = str(self._status_table[tasking_id])
+                tstatus = self._coerce_progress_code(self._status_table[tasking_id])
 
-                if (
-                    tstatus == ProgressCode.Completed
-                    or tstatus == ProgressCode.Errored
-                    or tstatus == ProgressCode.Failed
-                ):
+                if tstatus in [
+                    ProgressCode.Completed,
+                    ProgressCode.Errored,
+                    ProgressCode.Failed,
+                ]:
                     if tasking_id in self._results_table:
                         complete_and_ready = True
 
@@ -657,7 +676,7 @@ class TaskerSession:
         
         try:
             for tasking_id, tasking in tasking_table.items():
-                tstatus = status_table[tasking_id]
+                tstatus = self._coerce_progress_code(status_table[tasking_id])
 
                 if tstatus in [
                     ProgressCode.NotStarted,
@@ -720,7 +739,7 @@ class TaskerSession:
         
         self._session_lock.acquire()
         try:
-            self._status_table[tasking_id] = str(ProgressCode.NotStarted.value)
+            self._status_table[tasking_id] = ProgressCode.NotStarted
         finally:
             self._session_lock.release()
         del sgate
@@ -754,15 +773,15 @@ class TaskerSession:
                             result: TaskingResult = progress
 
                             if len(result.errors) > 0:
-                                self._status_table[tasking_id] = str(ProgressCode.Errored.value)
+                                self._status_table[tasking_id] = ProgressCode.Errored
                             elif len(result.failures) > 0:
-                                self._status_table[tasking_id] = str(ProgressCode.Failed.value)
+                                self._status_table[tasking_id] = ProgressCode.Failed
                             else:
-                                self._status_table[tasking_id] = str(ProgressCode.Completed.value)
+                                self._status_table[tasking_id] = ProgressCode.Completed
                                 self._results_table[tasking_id] = result
                                 break
                         else:
-                            prog_status = str(progress.status.value)
+                            prog_status = self._coerce_progress_code(progress.status)
                             self._status_table[tasking_id] = prog_status
                 
                     finally:
@@ -782,7 +801,7 @@ class TaskerSession:
             tresult = TaskingResult(
             tasking_id, tasking_name, parent_id, ResultCode.ERRORED, prefix=prefix
             )
-            self._status_table[tasking_id] = str(ProgressCode.Errored.value)
+            self._status_table[tasking_id] = ProgressCode.Errored
             tresult.add_error(tbdetail)
             self._results_table[tasking_id] = tresult
             
