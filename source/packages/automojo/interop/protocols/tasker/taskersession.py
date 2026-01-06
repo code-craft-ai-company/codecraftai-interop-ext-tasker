@@ -703,8 +703,17 @@ class TaskerSession:
         self._event_thread = threading.Thread(target=self._event_server_thread, name="tasker-session-event-svr", args=(sgate,), daemon=True)
         self._event_thread.start()
         sgate.wait()
-        
-        return
+
+        self._session_lock.acquire()
+        try:
+            events_endpoint = self._events_endpoint
+        finally:
+            self._session_lock.release()
+
+        if events_endpoint is None:
+            raise RuntimeError("The tasker session event server failed to start.")
+
+        return events_endpoint
             
     def _dispatch_task(
             self,
