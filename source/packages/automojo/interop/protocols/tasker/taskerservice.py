@@ -458,7 +458,7 @@ class TaskerService(rpyc.Service):
             
             this_type.service_lock.release()
             try:
-                result_str = session.get_tasking_status(tasking_id)
+                tstatus = session.get_tasking_status(tasking_id)
             finally:
                 this_type.service_lock.acquire()
 
