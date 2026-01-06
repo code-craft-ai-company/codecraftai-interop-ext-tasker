@@ -87,7 +87,7 @@ def test_cancel_tasking_invokes_shutdown_when_running() -> None:
     session = make_session()
     task = DummyTasking()
     session._taskings_table["tid"] = task
-    session._status_table["tid"] = "Running"
+    session._status_table["tid"] = ProgressCode.Running
 
     session.cancel_tasking("tid")
 
@@ -122,7 +122,7 @@ def test_dispose_tasking_removes_and_shutdown() -> None:
 def test_has_completed_and_result_ready_checks() -> None:
     session = make_session()
     result = TaskingResult("tid", "name", "parent", "worker", result_code=ResultCode.PASSED)
-    session._status_table["tid"] = "Completed"
+    session._status_table["tid"] = ProgressCode.Completed
     session._results_table["tid"] = result
 
     ready = session.has_completed_and_result_ready("tid")
@@ -134,7 +134,7 @@ def test_has_completed_and_result_ready_checks() -> None:
 def test_get_tasking_result_raises_when_not_complete() -> None:
     session = make_session()
     session._taskings_table["tid"] = DummyTasking()
-    session._status_table["tid"] = "Running"
+    session._status_table["tid"] = ProgressCode.Running
 
     exc = None
     try:
@@ -144,4 +144,3 @@ def test_get_tasking_result_raises_when_not_complete() -> None:
 
     testbase.assert_equal(isinstance(exc, SemanticError), True)
     return
-
