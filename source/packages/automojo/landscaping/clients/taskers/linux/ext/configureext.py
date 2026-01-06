@@ -433,12 +433,12 @@ class ConfigureExt:
         svc_running = False
 
         with client.ssh.open_session(basis_session=basis_session) as session:
-            chk_svc_running_cmd = "systemctl is-active --quiet tasker && echo $?"
+            chk_svc_running_cmd = f"systemctl is-active --quiet {svcname} && echo $?"
             status, stdout, stderr = session.run_cmd(chk_svc_running_cmd)
             if status != 0:
                 if stderr != "":
-                    errmsg = format_command_result(f"Error while attempting to start `{svcname}` service.",
-                                                chk_svc_running_cmd, status, stdout, stderr, exp_status=[0], target=client.ipaddr)
+                    errmsg = format_command_result(f"Error while checking if `{svcname}` service is running.",
+                                                   chk_svc_running_cmd, status, stdout, stderr, exp_status=[0], target=client.ipaddr)
                     raise CommandError(errmsg, status, stdout, stderr)
                 else:
                     svc_running = False
