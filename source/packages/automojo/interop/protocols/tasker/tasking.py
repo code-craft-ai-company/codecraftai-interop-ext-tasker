@@ -70,7 +70,7 @@ def instantiate_tasking(
     events_endpoint: Tuple[str, int],
     notify_url: Optional[str],
     notify_headers: Optional[Dict[str, str]],
-    aspects: Optional[TaskerAspects] = DEFAULT_TASKER_ASPECTS,
+    aspects: Optional[TaskerAspects] = None,
 ) -> "Tasking":
     """
         Factory function used by :class:`TaskerService` to instantiate a tasking class in a
@@ -93,6 +93,9 @@ def instantiate_tasking(
         
         :returns: Instantiated :class:`Tasking` or ``None`` if not found.
     """
+    if aspects is None:
+        aspects = DEFAULT_TASKER_ASPECTS
+
     logger = None
     tasking = None
 
@@ -105,7 +108,7 @@ def instantiate_tasking(
         log_handler = FileHandler(logfile)
         log_handler.setLevel(log_level)
 
-        logger = getEnhancedLogger("TASKING")
+        logger = getEnhancedLogger(f"TASKING.{tasking_id}")
         logger.addHandler(log_handler)
 
         tasking_type: Type[Tasking] = getattr(module, tasking_name)
@@ -193,7 +196,7 @@ class Tasking:
         events_endpoint: Optional[Tuple[str, int]],
         notify_url: Optional[str] = None,
         notify_headers: Optional[dict] = None,
-        aspects: Optional[TaskerAspects] = DEFAULT_TASKER_ASPECTS,
+        aspects: Optional[TaskerAspects] = None,
     ):
         """
             Initialize a new tasking instance.
@@ -233,6 +236,9 @@ class Tasking:
 
         self._notify_url = notify_url
         self._notify_headers = notify_headers
+
+        if aspects is None:
+            aspects = DEFAULT_TASKER_ASPECTS
         self._aspects = aspects
 
         self._kwparams: dict = None

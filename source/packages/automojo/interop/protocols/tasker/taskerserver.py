@@ -50,7 +50,7 @@ class TaskerServer(ThreadedServer):
 
     def __init__(self, hostname=None, ipv6=False, port=TASKER_SERVICE_PORT,
                  backlog=socket.SOMAXCONN, reuse_addr=True, authenticator=None, registrar=None,
-                 auto_register=None, protocol_config=TASKER_PROTOCOL_CONFIG, logging_directory: Optional[str]=None,
+                 auto_register=None, protocol_config=None, logging_directory: Optional[str]=None,
                  listener_timeout=0.5, socket_path=None):
         """
             Initializes the tasker service server.
@@ -61,6 +61,9 @@ class TaskerServer(ThreadedServer):
             :param logging_directory: Optional directory for log files.
         """
         
+        if protocol_config is None:
+            protocol_config = TASKER_PROTOCOL_CONFIG
+
         if logging_directory is None:
             logging_directory = tempfile.mkdtemp(prefix=f"taskerserver-{os.getpid()}-")
 
