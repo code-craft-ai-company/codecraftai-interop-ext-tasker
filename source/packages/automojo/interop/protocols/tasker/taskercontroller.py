@@ -57,7 +57,7 @@ class TaskerController:
         self,
         logging_directory: Optional[str] = None,
         summary_progress: Optional[SummaryProgressDelivery] = None,
-        aspects: Optional[TaskerAspects] = None,
+        aspects: Optional[TaskerAspects] = DEFAULT_TASKER_ASPECTS,
     ):
         """
             Initialize the :class:`TaskerController`.
@@ -68,9 +68,6 @@ class TaskerController:
         """
         self._logging_directory = logging_directory
         self._summary_progress = summary_progress
-
-        if aspects is None:
-            aspects = DEFAULT_TASKER_ASPECTS
         self._aspects = aspects
 
         self._tasker_nodes: List[TaskerNode] = []
@@ -502,7 +499,7 @@ class ProcessTaskerController(TaskerController):
     def __init__(
         self,
         logging_directory: Optional[str] = None,
-        aspects: Optional[TaskerAspects] = None,
+        aspects: Optional[TaskerAspects] = DEFAULT_TASKER_ASPECTS,
     ):
         """
             Initialize a :class:`ProcessTaskerController`.
@@ -584,7 +581,7 @@ class ClientTaskerController(TaskerController):
     def __init__(
         self,
         logging_directory: Optional[str] = None,
-        aspects: Optional[TaskerAspects] = None,
+        aspects: Optional[TaskerAspects] = DEFAULT_TASKER_ASPECTS,
     ):
         """
             Initialize a :class:`ClientTaskerController`.

@@ -796,7 +796,7 @@ class TaskerSession:
                     finally:
                         self._session_lock.release()
                 
-        except BaseException as err:
+        except Exception as err:
             tbdetail = create_traceback_detail(err)
             
             errmsg_lines = format_traceback_detail(tbdetail)
