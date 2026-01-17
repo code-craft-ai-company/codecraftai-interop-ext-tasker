@@ -174,7 +174,8 @@ class TaskerServerDaemon(object):
         proc = psutil.Process()
 
         # Close all 1024 possible open FDs
-        for _, fd in proc.open_files():
+        for file_attrs in proc.open_files():
+            fd = file_attrs[1] # The 'fd' should always be the 2nd item in the tuple
             try:
                 os.close(fd)
             except OSError as os_err:
