@@ -24,26 +24,26 @@ from automojo.xmodules.xformatting import format_command_result
 from automojo.interop.protocols.ssh.sshagent import SshSession
 
 if TYPE_CHECKING:
-    from automojo.landscaping.clients.linux.linuxclient import LinuxClient
+    from automojo.landscaping.clients.taskers.linux.linuxtaskerclient import LinuxTaskerClient
 
 class CommandsExt:
     """
         Provides command execution helpers for a Linux client.
     """
 
-    def __init__(self, client: "LinuxClient"):
+    def __init__(self, client: "LinuxTaskerClient"):
         """
             Creates a :class:`CommandsExt` instance bound to a client.
 
-            :param client: The :class:`LinuxClient` this extension operates on.
+            :param client: The :class:`LinuxTaskerClient` this extension operates on.
         """
         self._client_ref = weakref.ref(client)
         return
 
     @property
-    def client(self) -> "LinuxClient":
+    def client(self) -> "LinuxTaskerClient":
         """
-            Returns the owning :class:`LinuxClient` instance.
+            Returns the owning :class:`LinuxTaskerClient` instance.
         """
         return self._client_ref()
 
