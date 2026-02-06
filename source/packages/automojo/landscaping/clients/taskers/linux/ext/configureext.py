@@ -29,7 +29,7 @@ from automojo.interop.protocols.ssh.sshsession import SshSession
 import automojo.interop.protocols.tasker.taskerservice as tasker_service
 
 if TYPE_CHECKING:
-    from automojo.landscaping.clients.linux.linuxclient import LinuxClient
+    from automojo.landscaping.clients.taskers.linux.linuxtaskerclient import LinuxTaskerClient
 
 
 TEMPLATE_FILE_SUDO_CONFIG = "/etc/sudoers.d/77-automation-{username}"
@@ -52,19 +52,19 @@ class ConfigureExt:
         'zip'
     ]
 
-    def __init__(self, client: "LinuxClient"):
+    def __init__(self, client: "LinuxTaskerClient"):
         """
             Creates a :class:`ConfigureExt` instance bound to a client.
 
-            :param client: The :class:`LinuxClient` this extension operates on.
+            :param client: The :class:`LinuxTaskerClient` this extension operates on.
         """
         self._client_ref = weakref.ref(client)
         return
 
     @property
-    def client(self) -> "LinuxClient":
+    def client(self) -> "LinuxTaskerClient":
         """
-            Returns the owning :class:`LinuxClient` instance.
+            Returns the owning :class:`LinuxTaskerClient` instance.
         """
         return self._client_ref()
 

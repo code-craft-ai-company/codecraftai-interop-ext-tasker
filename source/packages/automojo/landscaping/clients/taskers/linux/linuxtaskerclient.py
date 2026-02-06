@@ -17,8 +17,8 @@ from automojo.interop.interfaces.isystemcontext import ISystemContext
 from automojo.landscaping.friendlyidentifier import FriendlyIdentifier
 from automojo.landscaping.clients.clientbase import ClientBase
 
-from automojo.landscaping.clients.linux.ext.commandsext import CommandsExt
-from automojo.landscaping.clients.linux.ext.configureext import ConfigureExt
+from automojo.landscaping.clients.taskers.linux.ext.commandsext import CommandsExt
+from automojo.landscaping.clients.taskers.linux.ext.configureext import ConfigureExt
 
 from automojo.interop.protocols.ssh.sshagent import SshAgent
 
