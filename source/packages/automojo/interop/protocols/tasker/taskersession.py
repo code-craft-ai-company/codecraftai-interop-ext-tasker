@@ -807,9 +807,8 @@ class TaskerSession:
             with open(log_file, "+a") as tlogf:
                 tlogf.write(errmsg)
             
-            tresult = TaskingResult(
-            tasking_id, tasking_name, parent_id, ResultCode.ERRORED, prefix=prefix
-            )
+            tresult = TaskingResult(tasking_id, tasking_name, parent_id, self._worker,
+                                    prefix=prefix, result_code=ResultCode.ERRORED)
             self._status_table[tasking_id] = ProgressCode.Errored
             tresult.add_error(tbdetail)
             self._results_table[tasking_id] = tresult
