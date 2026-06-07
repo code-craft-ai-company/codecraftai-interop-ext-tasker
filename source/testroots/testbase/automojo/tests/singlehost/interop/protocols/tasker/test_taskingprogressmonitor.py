@@ -1,10 +1,10 @@
 import threading
 import weakref
-import automojo.testbase as testbase
+import ccai.testbase as testbase
 
-from automojo.testbase.results.model.progressdelivery import SummaryProgressDelivery
-from automojo.testbase.results.model.progresscode import ProgressCode
-from automojo.interop.protocols.tasker.taskingprogressmonitor import TaskingProgressMonitor
+from ccai.testbase.results.model.progressdelivery import SummaryProgressDelivery
+from ccai.testbase.results.model.progresscode import ProgressCode
+from ccai.interop.protocols.tasker.taskingprogressmonitor import TaskingProgressMonitor
 
 
 class FailingPromise:

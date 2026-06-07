@@ -1,9 +1,9 @@
 import os
 from collections import OrderedDict
 import tempfile
-import automojo.testbase as testbase
-from automojo.errors.exceptions import SemanticError
-from automojo.interop.protocols.tasker.taskerservice import TaskerService
+import ccai.testbase as testbase
+from ccai.errors.exceptions import SemanticError
+from ccai.interop.protocols.tasker.taskerservice import TaskerService
 
 
 def create_service(tmpdir: str) -> TaskerService:

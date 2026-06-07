@@ -1,11 +1,11 @@
-import automojo.testbase as testbase
+import ccai.testbase as testbase
 
-from automojo.interop.protocols.tasker.taskercontroller import TaskerController
-from automojo.interop.protocols.tasker.tasking import TaskingIdentity, Tasking
-from automojo.interop.protocols.tasker.taskingevent import TaskingEvent
-from automojo.interop.protocols.tasker.taskeraspects import TaskerAspects
-from automojo.testbase.mocking import create_module_patch
-from automojo.testbase.results.model.taskingresult import TaskingResult
+from ccai.interop.protocols.tasker.taskercontroller import TaskerController
+from ccai.interop.protocols.tasker.tasking import TaskingIdentity, Tasking
+from ccai.interop.protocols.tasker.taskingevent import TaskingEvent
+from ccai.interop.protocols.tasker.taskeraspects import TaskerAspects
+from ccai.testbase.mocking import create_module_patch
+from ccai.testbase.results.model.taskingresult import TaskingResult
 import time
 
 

@@ -1,15 +1,15 @@
 import pickle
 from datetime import datetime
-import automojo.testbase as testbase
+import ccai.testbase as testbase
 
-from automojo.interop.protocols.tasker.taskersession import TaskerSession
-from automojo.interop.protocols.tasker.taskeraspects import TaskerAspects
-from automojo.testbase.results.model.progressinfo import ProgressInfo
-from automojo.testbase.results.model.progresscode import ProgressCode
-from automojo.testbase.results.model.progresstype import ProgressType
-from automojo.testbase.results.model.taskingresult import TaskingResult
-from automojo.testbase.results.model.resultcode import ResultCode
-from automojo.errors.exceptions import SemanticError
+from ccai.interop.protocols.tasker.taskersession import TaskerSession
+from ccai.interop.protocols.tasker.taskeraspects import TaskerAspects
+from ccai.testbase.results.model.progressinfo import ProgressInfo
+from ccai.testbase.results.model.progresscode import ProgressCode
+from ccai.testbase.results.model.progresstype import ProgressType
+from ccai.testbase.results.model.taskingresult import TaskingResult
+from ccai.testbase.results.model.resultcode import ResultCode
+from ccai.errors.exceptions import SemanticError
 
 
 class DummyLogger:

@@ -1,8 +1,8 @@
 ===========================================
-Automation Mojo Interop Extension: Tasker
+Code Craft AI Interop Extension: Tasker
 ===========================================
 
-The ``automojo-interop-ext-tasker`` package is a tasker extension for the ``automojo-interop`` and ``automojo-landscaping`` frameworks. It adds the protocol, server, and client plumbing required to run distributed "tasking" work on remote nodes coordinated through a tasker daemon, and plugs into the host packages through the extension mechanism in ``automojo-extension``.
+The ``codecraftai-interop-ext-tasker`` package is a tasker extension for the ``codecraftai-interop`` and ``codecraftai-landscaping`` frameworks. It adds the protocol, server, and client plumbing required to run distributed "tasking" work on remote nodes coordinated through a tasker daemon, and plugs into the host packages through the extension mechanism in ``codecraftai-extension``.
 
 Highlights
 ==========
@@ -52,7 +52,7 @@ Run the single-host test suite:
 
 .. code-block:: bash
 
-   testbase testing run --root source/testroots/testbase --includes=automojo.tests.singlehost --output=./.output
+   testbase testing run --root source/testroots/testbase --includes=ccai.tests.singlehost --output=./.output
 
 Standards and Conventions
 =========================

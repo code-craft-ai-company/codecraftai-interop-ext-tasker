@@ -1,6 +1,6 @@
-import automojo.testbase as testbase
+import ccai.testbase as testbase
 
-from automojo.interop.protocols.tasker.taskingresultpromise import (
+from ccai.interop.protocols.tasker.taskingresultpromise import (
     TaskingResultPromise,
     TaskingRef,
 )

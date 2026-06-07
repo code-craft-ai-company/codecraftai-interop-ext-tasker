@@ -1,6 +1,6 @@
-import automojo.testbase as testbase
+import ccai.testbase as testbase
 
-from automojo.interop.protocols.tasker.taskingevent import TaskingEvent
+from ccai.interop.protocols.tasker.taskingevent import TaskingEvent
 
 
 def test_properties_return_values() -> None:

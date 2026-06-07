@@ -1,9 +1,9 @@
 import os
 import tempfile
 
-import automojo.testbase as testbase
+import ccai.testbase as testbase
 
-from automojo.interop.protocols.tasker.taskerservermanager import (
+from ccai.interop.protocols.tasker.taskerservermanager import (
     spawn_tasking_server_process,
     TaskerServerManager,
 )

@@ -1,7 +1,7 @@
-import automojo.testbase as testbase
-from automojo.interop.protocols.tasker.taskingadapter import TaskingAdapter
-from automojo.interop.protocols.tasker.taskernode import TaskerNode
-from automojo.interop.protocols.tasker.taskinggroupscope import TaskingGroupScope
+import ccai.testbase as testbase
+from ccai.interop.protocols.tasker.taskingadapter import TaskingAdapter
+from ccai.interop.protocols.tasker.taskernode import TaskerNode
+from ccai.interop.protocols.tasker.taskinggroupscope import TaskingGroupScope
 
 
 class DummyController:
