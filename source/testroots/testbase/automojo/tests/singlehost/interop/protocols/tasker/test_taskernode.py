@@ -1,10 +1,10 @@
 import pickle
 import logging
-import automojo.testbase as testbase
-from automojo.interop.protocols.tasker.taskernode import TaskerNode
-from automojo.interop.protocols.tasker.taskeraspects import TaskerAspects
-import automojo.interop.protocols.tasker.taskernode as taskernode
-from automojo.testbase.mocking import create_module_patch
+import ccai.testbase as testbase
+from ccai.interop.protocols.tasker.taskernode import TaskerNode
+from ccai.interop.protocols.tasker.taskeraspects import TaskerAspects
+import ccai.interop.protocols.tasker.taskernode as taskernode
+from ccai.testbase.mocking import create_module_patch
 
 
 class DummyRoot:

@@ -1,8 +1,8 @@
 import threading
 import tempfile
-import automojo.testbase as testbase
+import ccai.testbase as testbase
 
-from automojo.interop.protocols.tasker.taskerserver import TaskerServer
+from ccai.interop.protocols.tasker.taskerserver import TaskerServer
 
 
 def _create_server(tmpdir):

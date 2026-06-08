@@ -3,15 +3,15 @@ import logging
 import os
 import tempfile
 
-import automojo.testbase as testbase
-from automojo.errors.exceptions import SemanticError
-from automojo.interop.protocols.tasker.tasking import (
+import ccai.testbase as testbase
+from ccai.errors.exceptions import SemanticError
+from ccai.interop.protocols.tasker.tasking import (
     Tasking,
     TaskingIdentity,
     instantiate_tasking,
 )
-from automojo.interop.protocols.tasker.examples.helloworldtasking import HelloWorldTasking
-from automojo.testbase.results.model.progresscode import ProgressCode
+from ccai.interop.protocols.tasker.examples.helloworldtasking import HelloWorldTasking
+from ccai.testbase.results.model.progresscode import ProgressCode
 
 
 class DummyTasking(Tasking):
@@ -53,7 +53,7 @@ def test_instantiate_tasking_returns_instance():
     task = instantiate_tasking(
         worker="w",
         wref="r",
-        module_name="automojo.interop.protocols.tasker.examples.helloworldtasking",
+        module_name="ccai.interop.protocols.tasker.examples.helloworldtasking",
         tasking_name="HelloWorldTasking",
         tasking_id="tid",
         parent_id="pid",

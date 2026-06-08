@@ -2,10 +2,10 @@ import os
 import tempfile
 import argparse
 
-import automojo.testbase as testbase
-from automojo.testbase.mocking import create_module_patch, create_class_patch
+import ccai.testbase as testbase
+from ccai.testbase.mocking import create_module_patch, create_class_patch
 
-from automojo.interop.protocols.tasker import taskerdaemon
+from ccai.interop.protocols.tasker import taskerdaemon
 
 
 def _setup_temp_server_paths():

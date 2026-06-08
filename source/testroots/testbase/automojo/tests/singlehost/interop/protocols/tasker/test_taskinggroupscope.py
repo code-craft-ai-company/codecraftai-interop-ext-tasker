@@ -1,11 +1,11 @@
 import datetime
-import automojo.testbase as testbase
+import ccai.testbase as testbase
 
-from automojo.testbase.results.model.progressinfo import ProgressInfo
-from automojo.testbase.results.model.progresscode import ProgressCode
-from automojo.testbase.results.model.progresstype import ProgressType
+from ccai.testbase.results.model.progressinfo import ProgressInfo
+from ccai.testbase.results.model.progresscode import ProgressCode
+from ccai.testbase.results.model.progresstype import ProgressType
 
-from automojo.interop.protocols.tasker.taskinggroupscope import TaskingGroupScope, TaskingGroupState
+from ccai.interop.protocols.tasker.taskinggroupscope import TaskingGroupScope, TaskingGroupState
 
 
 class DummyPromise:
