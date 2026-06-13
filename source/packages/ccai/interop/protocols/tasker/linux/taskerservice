@@ -17,7 +17,7 @@ source <( grep --color=never -E '^[\s]*[A-Za-z_]+[A-Za-z_0-9]*=' "$REPOSITORY_CO
 set +a
 
 
-TASKER_DIR="$( $THIS_DIR/python3 -c 'import mojo.interop.protocols.tasker as tasker; print(tasker.__file__[:-12])' )"
+TASKER_DIR="$( $THIS_DIR/python3 -c 'import ccai.interop.protocols.tasker as tasker; print(tasker.__file__[:-12])' )"
 
 echo "THIS_DIR=$THIS_DIR"
 echo "VENV_DIR=$VENV_DIR"

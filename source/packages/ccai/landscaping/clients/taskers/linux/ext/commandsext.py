@@ -73,7 +73,7 @@ class CommandsExt:
                 raise SemanticError(errmsg)
 
             mount_cmd = f"mkdir -p {mpoint}"
-            status, stderr, stdout = session.run_cmd()
+            status, stderr, stdout = session.run_cmd(mount_cmd)
             if status != 0:
                 errmsg = f"Error attempting to create mount point mpoint={mpoint}."
                 errmsg = format_command_result(errmsg, mount_cmd, status, stdout, stderr, exp_status=0)

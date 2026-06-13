@@ -2,12 +2,12 @@
 name = "codecraftai-interop-ext-tasker"
 description = "Code Craft AI - Tasker Interop Extensions"
 version = "0.0.1"
-authors = []
+authors = ["Myron Walker <myron.walker@gmail.com>"]
 readme = "README.rst"
-license = "LICENSE.md"
+license = "LicenseRef-CodeCraftAI-Dual-License"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: Other/Proprietary License",
     "Operating System :: POSIX"
 ]
 keywords = [
@@ -20,11 +20,12 @@ python = ">=3.10,<4.0"
 codecraftai-interop = { git = "https://github.com/automationmojo/codecraftai-interop.git", branch = "main" }
 codecraftai-landscaping = { git = "https://github.com/automationmojo/codecraftai-landscaping.git", branch = "main" }
 codecraftai-testplus = { git = "https://github.com/automationmojo/codecraftai-testplus.git", branch = "main" }
-
+codecraftai-testbase = { git = "https://github.com/automationmojo/codecraftai-testbase.git", branch = "main" }
+rpyc = "^6.0.1"
+psutil = "^7.2.1"
+requests = "^2.32.3"
 
 [tool.poetry.group.dev.dependencies]
-
-[tool.poetry.group.dbio.dependencies]
 
 [build-system]
 requires = ["poetry-core"]

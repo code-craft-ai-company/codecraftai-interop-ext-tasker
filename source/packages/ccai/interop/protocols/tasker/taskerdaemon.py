@@ -23,6 +23,8 @@ import sys
 import traceback
 
 
+from ccai.errors.exceptions import ConfigurationError
+
 from ccai.interop.protocols.tasker.taskerserver import TaskerServer
 
 
@@ -237,6 +239,8 @@ class TaskerServerDaemon(object):
         """
 
         start_debugger = False
+        tls_cert_file = None
+        tls_key_file = None
 
         if os.path.exists(self.SERVER_CONFIG_PATH):
             write_trace(
@@ -259,16 +263,40 @@ class TaskerServerDaemon(object):
                     dbgval = defsect["Debugger"].strip()
                     if dbgval == "yes":
                         start_debugger = True
+                if "TlsCertFile" in defsect:
+                    tls_cert_file = defsect["TlsCertFile"].strip()
+                if "TlsKeyFile" in defsect:
+                    tls_key_file = defsect["TlsKeyFile"].strip()
 
         if start_debugger:
             write_trace(self._daemon_logfile, f"Tasker starting debug assistant ...")
             self.run_debug_assistant()
 
+        # Fail closed: the tasker service binds all interfaces (0.0.0.0) and its
+        # RPyC protocol enables pickle and public-attribute access, so an
+        # unauthenticated endpoint is a remote-code-execution surface. Refuse to
+        # start unless the operator has configured a TLS cert/key pair (used as an
+        # rpyc SSLAuthenticator); binding all interfaces is intentional (taskers
+        # are reached by a remote controller) -- the security comes from the
+        # authenticator, not from restricting the bind address.
+        if tls_cert_file is None or tls_key_file is None:
+            err_msg_lines = ["Refusing to start the tasker service without authentication."]
+            err_msg_lines.append("The service binds 0.0.0.0 with a pickle-enabled RPyC protocol, so an authenticator is REQUIRED.")
+            err_msg_lines.append("Configure 'TlsCertFile' and 'TlsKeyFile' in the [DEFAULT] section of:")
+            err_msg_lines.append("    {}".format(self.SERVER_CONFIG_PATH))
+
+            err_msg = os.linesep.join(err_msg_lines)
+            write_trace(self._daemon_error_logfile, err_msg)
+            raise ConfigurationError(err_msg)
+
+        from rpyc.utils.authenticators import SSLAuthenticator
+        authenticator = SSLAuthenticator(tls_key_file, tls_cert_file)
+
         write_trace(self._daemon_logfile, f"Tasker creating tasker server instance ...")
 
         logging_directory = os.path.dirname(self._daemon_logfile)
 
-        server = TaskerServer(hostname="0.0.0.0", logging_directory=logging_directory)
+        server = TaskerServer(hostname="0.0.0.0", authenticator=authenticator, logging_directory=logging_directory)
 
         write_trace(
             self._daemon_logfile, f"Tasker calling tasker server serve_forever ..."

@@ -781,14 +781,20 @@ class TaskerSession:
                         if isinstance(progress, TaskingResult):
                             result: TaskingResult = progress
 
+                            # A TaskingResult is terminal -- record it and break for
+                            # every outcome. Previously the errored/failed branches
+                            # neither stored the result nor broke, so the dispatch
+                            # loop hung (~20 min) and the result was lost.
+                            self._results_table[tasking_id] = result
+
                             if len(result.errors) > 0:
                                 self._status_table[tasking_id] = ProgressCode.Errored
                             elif len(result.failures) > 0:
                                 self._status_table[tasking_id] = ProgressCode.Failed
                             else:
                                 self._status_table[tasking_id] = ProgressCode.Completed
-                                self._results_table[tasking_id] = result
-                                break
+
+                            break
                         else:
                             prog_status = self._coerce_progress_code(progress.status)
                             self._status_table[tasking_id] = prog_status
