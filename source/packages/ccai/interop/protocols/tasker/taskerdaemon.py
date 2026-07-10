@@ -241,6 +241,7 @@ class TaskerServerDaemon(object):
         start_debugger = False
         tls_cert_file = None
         tls_key_file = None
+        tls_ca_certs = None
 
         if os.path.exists(self.SERVER_CONFIG_PATH):
             write_trace(
@@ -267,6 +268,8 @@ class TaskerServerDaemon(object):
                     tls_cert_file = defsect["TlsCertFile"].strip()
                 if "TlsKeyFile" in defsect:
                     tls_key_file = defsect["TlsKeyFile"].strip()
+                if "TlsCaCerts" in defsect:
+                    tls_ca_certs = defsect["TlsCaCerts"].strip()
 
         if start_debugger:
             write_trace(self._daemon_logfile, f"Tasker starting debug assistant ...")
@@ -275,22 +278,35 @@ class TaskerServerDaemon(object):
         # Fail closed: the tasker service binds all interfaces (0.0.0.0) and its
         # RPyC protocol enables pickle and public-attribute access, so an
         # unauthenticated endpoint is a remote-code-execution surface. Refuse to
-        # start unless the operator has configured a TLS cert/key pair (used as an
-        # rpyc SSLAuthenticator); binding all interfaces is intentional (taskers
-        # are reached by a remote controller) -- the security comes from the
-        # authenticator, not from restricting the bind address.
-        if tls_cert_file is None or tls_key_file is None:
-            err_msg_lines = ["Refusing to start the tasker service without authentication."]
-            err_msg_lines.append("The service binds 0.0.0.0 with a pickle-enabled RPyC protocol, so an authenticator is REQUIRED.")
-            err_msg_lines.append("Configure 'TlsCertFile' and 'TlsKeyFile' in the [DEFAULT] section of:")
+        # start unless the operator has configured a TLS cert/key pair AND a CA
+        # bundle. The CA bundle is what makes the SSLAuthenticator require and
+        # verify a client certificate (mutual TLS); without it the server only
+        # presents its own certificate and performs no client authentication,
+        # so any peer that can complete the handshake reaches the pickle-enabled
+        # RPyC endpoint. Binding all interfaces is intentional (taskers are
+        # reached by a remote controller) -- the security comes from mutual-TLS
+        # client authentication, not from restricting the bind address.
+        if tls_cert_file is None or tls_key_file is None or tls_ca_certs is None:
+            err_msg_lines = ["Refusing to start the tasker service without mutual-TLS client authentication."]
+            err_msg_lines.append("The service binds 0.0.0.0 with a pickle-enabled RPyC protocol, so a client-verifying authenticator is REQUIRED.")
+            err_msg_lines.append("Configure 'TlsCertFile', 'TlsKeyFile' and 'TlsCaCerts' in the [DEFAULT] section of:")
             err_msg_lines.append("    {}".format(self.SERVER_CONFIG_PATH))
+            err_msg_lines.append("'TlsCaCerts' is the CA bundle used to verify connecting client certificates.")
 
             err_msg = os.linesep.join(err_msg_lines)
             write_trace(self._daemon_error_logfile, err_msg)
             raise ConfigurationError(err_msg)
 
+        import ssl
         from rpyc.utils.authenticators import SSLAuthenticator
-        authenticator = SSLAuthenticator(tls_key_file, tls_cert_file)
+
+        # ca_certs + cert_reqs=CERT_REQUIRED makes the handshake reject any
+        # client that does not present a certificate signed by the configured
+        # CA -- this is the actual authentication boundary for the daemon.
+        authenticator = SSLAuthenticator(
+            tls_key_file, tls_cert_file, ca_certs=tls_ca_certs,
+            cert_reqs=ssl.CERT_REQUIRED,
+        )
 
         write_trace(self._daemon_logfile, f"Tasker creating tasker server instance ...")
 
