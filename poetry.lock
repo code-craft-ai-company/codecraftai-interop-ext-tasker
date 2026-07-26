@@ -520,7 +520,7 @@ rpyc = "^6.0.1"
 type = "git"
 url = "https://github.com/automationmojo/codecraftai-interop.git"
 reference = "main"
-resolved_reference = "3e5c9e3d7083ceb129ca3d0626ce0ba940af4ab7"
+resolved_reference = "6116ce8ec41daba23b343954fec5163643816b70"
 
 [[package]]
 name = "codecraftai-landscaping"
@@ -553,7 +553,7 @@ pyyaml = "^6.0.2"
 type = "git"
 url = "https://github.com/automationmojo/codecraftai-landscaping.git"
 reference = "main"
-resolved_reference = "ea84b04f5655ea2525e0f0099813e81d5e31ce13"
+resolved_reference = "11c2d8877ed3c5684a9da3c18161248c803431cc"
 
 [[package]]
 name = "codecraftai-networking"
@@ -668,7 +668,7 @@ pyyaml = "^6.0.2"
 type = "git"
 url = "https://github.com/automationmojo/codecraftai-testbase.git"
 reference = "main"
-resolved_reference = "1b7eb659093974fa1276a56ab5f9f5d525e01b2e"
+resolved_reference = "66afd67f8738a78c9f09246d14a16829509f8955"
 
 [[package]]
 name = "codecraftai-testplus"
@@ -702,7 +702,7 @@ debugpy = "^1.8.12"
 type = "git"
 url = "https://github.com/automationmojo/codecraftai-testplus.git"
 reference = "main"
-resolved_reference = "c5bb50c65172c7f0b367024236c7d18dbf67f80c"
+resolved_reference = "84abdff9c1df0fcb8d4d36656aacca2defb3be2f"
 
 [[package]]
 name = "codecraftai-this-app"
