@@ -52,7 +52,13 @@ AI based testing should run only the 'singlehost' tests tests with:
 ```
     source .venv/bin/activate
     
-    testbase testing run --root source/testroots/ccai --includes=ccai.tests.singlehost --output=<desired output folder>
+    PYTHONPATH="$PWD/source/packages:$PWD/source/testroots/testbase" \
+      testbase testing run --root source/testroots/testbase/automojo \
+        --includes=automojo.tests.singlehost --output=<desired output folder>
+
+Note the test namespace here is `automojo`, not `ccai` — this testroot predates the
+package rename and has not been moved over. The root must point at the namespace
+directory that actually exists, and PYTHONPATH must contain the directory above it.
 ```
 
 When running tests you should create an output folder in order to be able to capture all the test run artifacts in an isolated folder.
