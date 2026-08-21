@@ -1,0 +1,1768 @@
+
+{
+    "name": "<session>",
+    "instance": "c15957ac-197f-4ff0-95ae-bdeed272da98",
+    "parent": null,
+    "rtype": "JOB"
+}
+{
+    "name": "automojo",
+    "instance": "92ffc09c-7e0c-4331-83b3-84936fd60e0e",
+    "parent": "c15957ac-197f-4ff0-95ae-bdeed272da98",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests",
+    "instance": "300589f4-7753-4bb3-87ff-f1289069d34a",
+    "parent": "92ffc09c-7e0c-4331-83b3-84936fd60e0e",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost",
+    "instance": "708ba817-fd47-4d1f-a587-9f1dca341ba7",
+    "parent": "300589f4-7753-4bb3-87ff-f1289069d34a",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop",
+    "instance": "909b276b-3a90-44f6-98d7-3fbac919ddd3",
+    "parent": "708ba817-fd47-4d1f-a587-9f1dca341ba7",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols",
+    "instance": "92e92ff2-b680-48c7-b333-31f26064c2d3",
+    "parent": "909b276b-3a90-44f6-98d7-3fbac919ddd3",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker",
+    "instance": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "parent": "92e92ff2-b680-48c7-b333-31f26064c2d3",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskercontroller",
+    "instance": "47af5d1a-0fcb-49fe-98e5-a94a5f0c8a6a",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskercontroller#test_execute_tasking_variants",
+    "monikers": [],
+    "pivots": {},
+    "instance": "57045482-3c4f-4008-83e5-b2e59977c867",
+    "parent": "47af5d1a-0fcb-49fe-98e5-a94a5f0c8a6a",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.584131",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskercontroller#test_execute_tasking_variants",
+    "monikers": [],
+    "pivots": {},
+    "instance": "57045482-3c4f-4008-83e5-b2e59977c867",
+    "parent": "47af5d1a-0fcb-49fe-98e5-a94a5f0c8a6a",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.584131",
+    "stop": "2026-07-30T23:10:41.584781",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskercontroller#test_wait_for_any_to_event_error_when_task_complete_without_event",
+    "monikers": [],
+    "pivots": {},
+    "instance": "2fc52839-d828-4637-8b30-f8328666ccbb",
+    "parent": "47af5d1a-0fcb-49fe-98e5-a94a5f0c8a6a",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.585508",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskercontroller#test_wait_for_any_to_event_error_when_task_complete_without_event",
+    "monikers": [],
+    "pivots": {},
+    "instance": "2fc52839-d828-4637-8b30-f8328666ccbb",
+    "parent": "47af5d1a-0fcb-49fe-98e5-a94a5f0c8a6a",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.585508",
+    "stop": "2026-07-30T23:10:41.586262",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskercontroller#test_wait_for_any_to_event_success",
+    "monikers": [],
+    "pivots": {},
+    "instance": "3a5059b9-1384-4b08-8738-13b7da62fe93",
+    "parent": "47af5d1a-0fcb-49fe-98e5-a94a5f0c8a6a",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.587020",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskercontroller#test_wait_for_any_to_event_success",
+    "monikers": [],
+    "pivots": {},
+    "instance": "3a5059b9-1384-4b08-8738-13b7da62fe93",
+    "parent": "47af5d1a-0fcb-49fe-98e5-a94a5f0c8a6a",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.587020",
+    "stop": "2026-07-30T23:10:41.587932",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskercontroller#test_wait_for_tasking_results_returns_results",
+    "monikers": [],
+    "pivots": {},
+    "instance": "703223f3-58a5-4f0f-9c44-8129bf546c3d",
+    "parent": "47af5d1a-0fcb-49fe-98e5-a94a5f0c8a6a",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.588749",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskercontroller#test_wait_for_tasking_results_returns_results",
+    "monikers": [],
+    "pivots": {},
+    "instance": "703223f3-58a5-4f0f-9c44-8129bf546c3d",
+    "parent": "47af5d1a-0fcb-49fe-98e5-a94a5f0c8a6a",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.588749",
+    "stop": "2026-07-30T23:10:41.589594",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerdaemon",
+    "instance": "510aba30-5ca1-4abe-9de4-55f010200210",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerdaemon#test_daemon_main_debug_flag_forces_start",
+    "monikers": [],
+    "pivots": {},
+    "instance": "97899399-6447-4a6c-8629-d107cc83d4cc",
+    "parent": "510aba30-5ca1-4abe-9de4-55f010200210",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.591475",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerdaemon#test_daemon_main_debug_flag_forces_start",
+    "monikers": [],
+    "pivots": {},
+    "instance": "97899399-6447-4a6c-8629-d107cc83d4cc",
+    "parent": "510aba30-5ca1-4abe-9de4-55f010200210",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.591475",
+    "stop": "2026-07-30T23:10:41.593587",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerdaemon#test_daemon_main_start_action_invokes_start",
+    "monikers": [],
+    "pivots": {},
+    "instance": "62fb9db5-b5ac-4004-bb5f-da78f246f6ea",
+    "parent": "510aba30-5ca1-4abe-9de4-55f010200210",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.594727",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerdaemon#test_daemon_main_start_action_invokes_start",
+    "monikers": [],
+    "pivots": {},
+    "instance": "62fb9db5-b5ac-4004-bb5f-da78f246f6ea",
+    "parent": "510aba30-5ca1-4abe-9de4-55f010200210",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.594727",
+    "stop": "2026-07-30T23:10:41.596695",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerdaemon#test_process_exists_true_and_false",
+    "monikers": [],
+    "pivots": {},
+    "instance": "758b7a54-c233-46d3-aaf5-59514ee197d5",
+    "parent": "510aba30-5ca1-4abe-9de4-55f010200210",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.598215",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerdaemon#test_process_exists_true_and_false",
+    "monikers": [],
+    "pivots": {},
+    "instance": "758b7a54-c233-46d3-aaf5-59514ee197d5",
+    "parent": "510aba30-5ca1-4abe-9de4-55f010200210",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.598215",
+    "stop": "2026-07-30T23:10:41.600080",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerdaemon#test_remove_pidfile_deletes_existing_file",
+    "monikers": [],
+    "pivots": {},
+    "instance": "2c811606-715f-4341-b042-380df64ae02f",
+    "parent": "510aba30-5ca1-4abe-9de4-55f010200210",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.601406",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerdaemon#test_remove_pidfile_deletes_existing_file",
+    "monikers": [],
+    "pivots": {},
+    "instance": "2c811606-715f-4341-b042-380df64ae02f",
+    "parent": "510aba30-5ca1-4abe-9de4-55f010200210",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.601406",
+    "stop": "2026-07-30T23:10:41.603208",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerdaemon#test_write_trace_appends_lines",
+    "monikers": [],
+    "pivots": {},
+    "instance": "6f98442a-a975-4556-820f-9ef28bb47893",
+    "parent": "510aba30-5ca1-4abe-9de4-55f010200210",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.604482",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerdaemon#test_write_trace_appends_lines",
+    "monikers": [],
+    "pivots": {},
+    "instance": "6f98442a-a975-4556-820f-9ef28bb47893",
+    "parent": "510aba30-5ca1-4abe-9de4-55f010200210",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.604482",
+    "stop": "2026-07-30T23:10:41.606451",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskernode",
+    "instance": "1a2e7911-b373-454f-9c04-e3ef03b03d50",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskernode#test_call_tasking_method_pickles_arguments",
+    "monikers": [],
+    "pivots": {},
+    "instance": "3ba20025-68b6-489e-b0d5-9f266b211462",
+    "parent": "1a2e7911-b373-454f-9c04-e3ef03b03d50",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.610367",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskernode#test_call_tasking_method_pickles_arguments",
+    "monikers": [],
+    "pivots": {},
+    "instance": "3ba20025-68b6-489e-b0d5-9f266b211462",
+    "parent": "1a2e7911-b373-454f-9c04-e3ef03b03d50",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.610367",
+    "stop": "2026-07-30T23:10:41.612064",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskernode#test_create_connection_uses_timeout_and_connects",
+    "monikers": [],
+    "pivots": {},
+    "instance": "66b34c12-cef9-4198-860c-c726bc69c9a0",
+    "parent": "1a2e7911-b373-454f-9c04-e3ef03b03d50",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.613730",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskernode#test_create_connection_uses_timeout_and_connects",
+    "monikers": [],
+    "pivots": {},
+    "instance": "66b34c12-cef9-4198-860c-c726bc69c9a0",
+    "parent": "1a2e7911-b373-454f-9c04-e3ef03b03d50",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.613730",
+    "stop": "2026-07-30T23:10:41.615399",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskernode#test_execute_tasking_returns_promise",
+    "monikers": [],
+    "pivots": {},
+    "instance": "2dd5937a-b73f-42a9-a61d-1156355a823a",
+    "parent": "1a2e7911-b373-454f-9c04-e3ef03b03d50",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.617066",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskernode#test_execute_tasking_returns_promise",
+    "monikers": [],
+    "pivots": {},
+    "instance": "2dd5937a-b73f-42a9-a61d-1156355a823a",
+    "parent": "1a2e7911-b373-454f-9c04-e3ef03b03d50",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.617066",
+    "stop": "2026-07-30T23:10:41.618866",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskernode#test_session_close_resets_session_id_and_calls_remote",
+    "monikers": [],
+    "pivots": {},
+    "instance": "872805e3-578e-4b4d-8532-b48eff58b989",
+    "parent": "1a2e7911-b373-454f-9c04-e3ef03b03d50",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.620715",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskernode#test_session_close_resets_session_id_and_calls_remote",
+    "monikers": [],
+    "pivots": {},
+    "instance": "872805e3-578e-4b4d-8532-b48eff58b989",
+    "parent": "1a2e7911-b373-454f-9c04-e3ef03b03d50",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.620715",
+    "stop": "2026-07-30T23:10:41.622571",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskernode#test_session_open_sets_session_id_and_closes_client",
+    "monikers": [],
+    "pivots": {},
+    "instance": "f63600cd-1260-44a2-927d-18d2f1318a2e",
+    "parent": "1a2e7911-b373-454f-9c04-e3ef03b03d50",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.624646",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskernode#test_session_open_sets_session_id_and_closes_client",
+    "monikers": [],
+    "pivots": {},
+    "instance": "f63600cd-1260-44a2-927d-18d2f1318a2e",
+    "parent": "1a2e7911-b373-454f-9c04-e3ef03b03d50",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.624646",
+    "stop": "2026-07-30T23:10:41.626451",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerserver",
+    "instance": "46bae9f1-25ed-4a8e-b750-550169316c4f",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerserver#test_get_service_endpoint_matches_listener",
+    "monikers": [],
+    "pivots": {},
+    "instance": "4a805e21-d772-47e5-8464-2a0670dde3a6",
+    "parent": "46bae9f1-25ed-4a8e-b750-550169316c4f",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.630544",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerserver#test_get_service_endpoint_matches_listener",
+    "monikers": [],
+    "pivots": {},
+    "instance": "4a805e21-d772-47e5-8464-2a0670dde3a6",
+    "parent": "46bae9f1-25ed-4a8e-b750-550169316c4f",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.630544",
+    "stop": "2026-07-30T23:10:41.634264",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerserver#test_serve_forever_runs_in_current_thread",
+    "monikers": [],
+    "pivots": {},
+    "instance": "6bc18fde-0000-47c3-9a54-6a59a4f1b8ad",
+    "parent": "46bae9f1-25ed-4a8e-b750-550169316c4f",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.636876",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerserver#test_serve_forever_runs_in_current_thread",
+    "monikers": [],
+    "pivots": {},
+    "instance": "6bc18fde-0000-47c3-9a54-6a59a4f1b8ad",
+    "parent": "46bae9f1-25ed-4a8e-b750-550169316c4f",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.636876",
+    "stop": "2026-07-30T23:10:41.639785",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerserver#test_start_runs_service_thread",
+    "monikers": [],
+    "pivots": {},
+    "instance": "46d98ac7-d5dc-4de3-8a83-1187eda76ec7",
+    "parent": "46bae9f1-25ed-4a8e-b750-550169316c4f",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.642584",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerserver#test_start_runs_service_thread",
+    "monikers": [],
+    "pivots": {},
+    "instance": "46d98ac7-d5dc-4de3-8a83-1187eda76ec7",
+    "parent": "46bae9f1-25ed-4a8e-b750-550169316c4f",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.642584",
+    "stop": "2026-07-30T23:10:41.645611",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservermanager",
+    "instance": "8005f6a3-0e4a-4ab4-aa9f-5454add73e56",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservermanager#test_spawn_returns_running_server",
+    "monikers": [],
+    "pivots": {},
+    "instance": "ecb612e5-d669-4c63-bf09-d242b2c60638",
+    "parent": "8005f6a3-0e4a-4ab4-aa9f-5454add73e56",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.650020",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservermanager#test_spawn_returns_running_server",
+    "monikers": [],
+    "pivots": {},
+    "instance": "ecb612e5-d669-4c63-bf09-d242b2c60638",
+    "parent": "8005f6a3-0e4a-4ab4-aa9f-5454add73e56",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.650020",
+    "stop": "2026-07-30T23:10:41.819423",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservermanager#test_spawn_uses_logging_directory",
+    "monikers": [],
+    "pivots": {},
+    "instance": "b4a0a96a-1532-4fed-b0f8-2dbed3200293",
+    "parent": "8005f6a3-0e4a-4ab4-aa9f-5454add73e56",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.823645",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservermanager#test_spawn_uses_logging_directory",
+    "monikers": [],
+    "pivots": {},
+    "instance": "b4a0a96a-1532-4fed-b0f8-2dbed3200293",
+    "parent": "8005f6a3-0e4a-4ab4-aa9f-5454add73e56",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.823645",
+    "stop": "2026-07-30T23:10:41.991707",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservice",
+    "instance": "9600857a-11c2-445e-ae53-ab4849f93c0d",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservice#test_archive_folder_creates_zip",
+    "monikers": [],
+    "pivots": {},
+    "instance": "9a0d1892-e8aa-46fc-9435-5431a76489bd",
+    "parent": "9600857a-11c2-445e-ae53-ab4849f93c0d",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:41.998332",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservice#test_archive_folder_creates_zip",
+    "monikers": [],
+    "pivots": {},
+    "instance": "9a0d1892-e8aa-46fc-9435-5431a76489bd",
+    "parent": "9600857a-11c2-445e-ae53-ab4849f93c0d",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:41.998332",
+    "stop": "2026-07-30T23:10:42.002777",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservice#test_file_and_folder_exists",
+    "monikers": [],
+    "pivots": {},
+    "instance": "8aacf371-514f-42b5-b3fa-ce78575b567a",
+    "parent": "9600857a-11c2-445e-ae53-ab4849f93c0d",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.006555",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservice#test_file_and_folder_exists",
+    "monikers": [],
+    "pivots": {},
+    "instance": "8aacf371-514f-42b5-b3fa-ce78575b567a",
+    "parent": "9600857a-11c2-445e-ae53-ab4849f93c0d",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.006555",
+    "stop": "2026-07-30T23:10:42.024088",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservice#test_locked_get_session_validations",
+    "monikers": [],
+    "pivots": {},
+    "instance": "aa1b6a4e-960a-4d9b-b5a0-1df0f73a5d77",
+    "parent": "9600857a-11c2-445e-ae53-ab4849f93c0d",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.054344",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservice#test_locked_get_session_validations",
+    "monikers": [],
+    "pivots": {},
+    "instance": "aa1b6a4e-960a-4d9b-b5a0-1df0f73a5d77",
+    "parent": "9600857a-11c2-445e-ae53-ab4849f93c0d",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.054344",
+    "stop": "2026-07-30T23:10:42.057552",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservice#test_session_close_all_returns_last_closed_session",
+    "monikers": [],
+    "pivots": {},
+    "instance": "9a09d3c0-f144-4c60-84d8-10f3c8528276",
+    "parent": "9600857a-11c2-445e-ae53-ab4849f93c0d",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.061357",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservice#test_session_close_all_returns_last_closed_session",
+    "monikers": [],
+    "pivots": {},
+    "instance": "9a09d3c0-f144-4c60-84d8-10f3c8528276",
+    "parent": "9600857a-11c2-445e-ae53-ab4849f93c0d",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.061357",
+    "stop": "2026-07-30T23:10:42.071523",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservice#test_session_close_all_returns_none_when_no_sessions",
+    "monikers": [],
+    "pivots": {},
+    "instance": "661c5b9d-188a-4618-8ac4-5f258f43e252",
+    "parent": "9600857a-11c2-445e-ae53-ab4849f93c0d",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.074483",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskerservice#test_session_close_all_returns_none_when_no_sessions",
+    "monikers": [],
+    "pivots": {},
+    "instance": "661c5b9d-188a-4618-8ac4-5f258f43e252",
+    "parent": "9600857a-11c2-445e-ae53-ab4849f93c0d",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.074483",
+    "stop": "2026-07-30T23:10:42.078218",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession",
+    "instance": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_cancel_tasking_invokes_shutdown_when_running",
+    "monikers": [],
+    "pivots": {},
+    "instance": "45ae859e-8571-41ed-8456-1b6112ae842c",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.084946",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_cancel_tasking_invokes_shutdown_when_running",
+    "monikers": [],
+    "pivots": {},
+    "instance": "45ae859e-8571-41ed-8456-1b6112ae842c",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.084946",
+    "stop": "2026-07-30T23:10:42.087729",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_cancel_tasking_raises_unknown_tasking",
+    "monikers": [],
+    "pivots": {},
+    "instance": "66f1e8ad-1fb3-4207-a3f5-9cb1d571d854",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.090672",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_cancel_tasking_raises_unknown_tasking",
+    "monikers": [],
+    "pivots": {},
+    "instance": "66f1e8ad-1fb3-4207-a3f5-9cb1d571d854",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.090672",
+    "stop": "2026-07-30T23:10:42.093942",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_dispose_tasking_removes_and_shutdown",
+    "monikers": [],
+    "pivots": {},
+    "instance": "9d644eeb-2346-4fe4-ae30-cdf7fde0bebf",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.097823",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_dispose_tasking_removes_and_shutdown",
+    "monikers": [],
+    "pivots": {},
+    "instance": "9d644eeb-2346-4fe4-ae30-cdf7fde0bebf",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.097823",
+    "stop": "2026-07-30T23:10:42.101719",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_get_tasking_progress_returns_progress",
+    "monikers": [],
+    "pivots": {},
+    "instance": "bde32bb4-0981-4983-a1cb-9991b8102bd4",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.105038",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_get_tasking_progress_returns_progress",
+    "monikers": [],
+    "pivots": {},
+    "instance": "bde32bb4-0981-4983-a1cb-9991b8102bd4",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.105038",
+    "stop": "2026-07-30T23:10:42.108140",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_get_tasking_result_raises_when_not_complete",
+    "monikers": [],
+    "pivots": {},
+    "instance": "22ef8063-8480-4af3-93f7-feecce50d823",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.112089",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_get_tasking_result_raises_when_not_complete",
+    "monikers": [],
+    "pivots": {},
+    "instance": "22ef8063-8480-4af3-93f7-feecce50d823",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.112089",
+    "stop": "2026-07-30T23:10:42.115771",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_has_completed_and_result_ready_checks",
+    "monikers": [],
+    "pivots": {},
+    "instance": "547d3c31-f1ec-4e2d-a6f1-76b3fec86507",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.119042",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_has_completed_and_result_ready_checks",
+    "monikers": [],
+    "pivots": {},
+    "instance": "547d3c31-f1ec-4e2d-a6f1-76b3fec86507",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.119042",
+    "stop": "2026-07-30T23:10:42.122676",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_post_and_get_tasking_events",
+    "monikers": [],
+    "pivots": {},
+    "instance": "d6cb8b75-84f2-4a70-8bc9-e1ce13e3e7c2",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.125948",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskersession#test_post_and_get_tasking_events",
+    "monikers": [],
+    "pivots": {},
+    "instance": "d6cb8b75-84f2-4a70-8bc9-e1ce13e3e7c2",
+    "parent": "dc0c3f4e-3a4b-4d1e-9c72-0b03f2536840",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.125948",
+    "stop": "2026-07-30T23:10:42.129470",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking",
+    "instance": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_get_identity_and_full_name",
+    "monikers": [],
+    "pivots": {},
+    "instance": "dd399889-609b-4881-bc1e-94ee728f93e2",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.137576",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_get_identity_and_full_name",
+    "monikers": [],
+    "pivots": {},
+    "instance": "dd399889-609b-4881-bc1e-94ee728f93e2",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.137576",
+    "stop": "2026-07-30T23:10:42.142591",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_instantiate_tasking_missing_returns_none",
+    "monikers": [],
+    "pivots": {},
+    "instance": "291aabf1-b5cc-457d-a318-8da334900ed4",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.147310",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_instantiate_tasking_missing_returns_none",
+    "monikers": [],
+    "pivots": {},
+    "instance": "291aabf1-b5cc-457d-a318-8da334900ed4",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.147310",
+    "stop": "2026-07-30T23:10:42.152151",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_instantiate_tasking_returns_instance",
+    "monikers": [],
+    "pivots": {},
+    "instance": "de71906b-0a48-4638-9e41-b752cc2bc2e2",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.156960",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_instantiate_tasking_returns_instance",
+    "monikers": [],
+    "pivots": {},
+    "instance": "de71906b-0a48-4638-9e41-b752cc2bc2e2",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.156960",
+    "stop": "2026-07-30T23:10:42.162741",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_mark_progress_state_transitions",
+    "monikers": [],
+    "pivots": {},
+    "instance": "8a3cee12-ff8b-43ce-97ae-ccae20951d24",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.167532",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_mark_progress_state_transitions",
+    "monikers": [],
+    "pivots": {},
+    "instance": "8a3cee12-ff8b-43ce-97ae-ccae20951d24",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.167532",
+    "stop": "2026-07-30T23:10:42.172023",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_taskingidentity_as_tuple",
+    "monikers": [],
+    "pivots": {},
+    "instance": "88405e3c-761a-42f8-8092-3304cc906203",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.177347",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_taskingidentity_as_tuple",
+    "monikers": [],
+    "pivots": {},
+    "instance": "88405e3c-761a-42f8-8092-3304cc906203",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.177347",
+    "stop": "2026-07-30T23:10:42.182450",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_write_metrics_creates_file",
+    "monikers": [],
+    "pivots": {},
+    "instance": "fa388fc4-9ee2-4c27-b2ab-5c8d0f7713b0",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.187309",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_write_metrics_creates_file",
+    "monikers": [],
+    "pivots": {},
+    "instance": "fa388fc4-9ee2-4c27-b2ab-5c8d0f7713b0",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.187309",
+    "stop": "2026-07-30T23:10:42.192274",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_write_metrics_unknown_stream_raises",
+    "monikers": [],
+    "pivots": {},
+    "instance": "b330975e-9796-49ff-85e3-6cf26442fb7f",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.198132",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_tasking#test_write_metrics_unknown_stream_raises",
+    "monikers": [],
+    "pivots": {},
+    "instance": "b330975e-9796-49ff-85e3-6cf26442fb7f",
+    "parent": "0f139417-3cd5-42c9-8cc9-9fb07ad6f189",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.198132",
+    "stop": "2026-07-30T23:10:42.203162",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingadapter",
+    "instance": "2671ff0f-7ffc-4ed4-8460-1ecb275649f2",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingadapter#test_available_nodes_after_init",
+    "monikers": [],
+    "pivots": {},
+    "instance": "98c1a388-b746-4440-9400-9e66855568a2",
+    "parent": "2671ff0f-7ffc-4ed4-8460-1ecb275649f2",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.213736",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingadapter#test_available_nodes_after_init",
+    "monikers": [],
+    "pivots": {},
+    "instance": "98c1a388-b746-4440-9400-9e66855568a2",
+    "parent": "2671ff0f-7ffc-4ed4-8460-1ecb275649f2",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.213736",
+    "stop": "2026-07-30T23:10:42.218104",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingadapter#test_checkout_and_checkin_nodes",
+    "monikers": [],
+    "pivots": {},
+    "instance": "ebd58593-690a-41f0-a9e5-7c0049b380bf",
+    "parent": "2671ff0f-7ffc-4ed4-8460-1ecb275649f2",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.223250",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingadapter#test_checkout_and_checkin_nodes",
+    "monikers": [],
+    "pivots": {},
+    "instance": "ebd58593-690a-41f0-a9e5-7c0049b380bf",
+    "parent": "2671ff0f-7ffc-4ed4-8460-1ecb275649f2",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.223250",
+    "stop": "2026-07-30T23:10:42.227557",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingadapter#test_checkout_nodes_overflow_raises",
+    "monikers": [],
+    "pivots": {},
+    "instance": "8ce630d8-dad9-4dd8-9fae-48012557146e",
+    "parent": "2671ff0f-7ffc-4ed4-8460-1ecb275649f2",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.233642",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingadapter#test_checkout_nodes_overflow_raises",
+    "monikers": [],
+    "pivots": {},
+    "instance": "8ce630d8-dad9-4dd8-9fae-48012557146e",
+    "parent": "2671ff0f-7ffc-4ed4-8460-1ecb275649f2",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.233642",
+    "stop": "2026-07-30T23:10:42.238805",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingadapter#test_create_tasking_group_scope_uses_nodes_and_sequencer",
+    "monikers": [],
+    "pivots": {},
+    "instance": "82f949d4-6498-4063-aa9c-9188bfdc3945",
+    "parent": "2671ff0f-7ffc-4ed4-8460-1ecb275649f2",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.243371",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingadapter#test_create_tasking_group_scope_uses_nodes_and_sequencer",
+    "monikers": [],
+    "pivots": {},
+    "instance": "82f949d4-6498-4063-aa9c-9188bfdc3945",
+    "parent": "2671ff0f-7ffc-4ed4-8460-1ecb275649f2",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.243371",
+    "stop": "2026-07-30T23:10:42.248556",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingevent",
+    "instance": "8187fac9-ab42-4b97-bad1-cd885ee9955d",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingevent#test_as_dict_serialization",
+    "monikers": [],
+    "pivots": {},
+    "instance": "1aba6562-9989-45e9-a2f6-a94fb0d7739a",
+    "parent": "8187fac9-ab42-4b97-bad1-cd885ee9955d",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.260176",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingevent#test_as_dict_serialization",
+    "monikers": [],
+    "pivots": {},
+    "instance": "1aba6562-9989-45e9-a2f6-a94fb0d7739a",
+    "parent": "8187fac9-ab42-4b97-bad1-cd885ee9955d",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.260176",
+    "stop": "2026-07-30T23:10:42.266073",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingevent#test_from_dict_creates_equivalent_event",
+    "monikers": [],
+    "pivots": {},
+    "instance": "ee30c381-6b95-418f-bbde-9631d185df42",
+    "parent": "8187fac9-ab42-4b97-bad1-cd885ee9955d",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.271942",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingevent#test_from_dict_creates_equivalent_event",
+    "monikers": [],
+    "pivots": {},
+    "instance": "ee30c381-6b95-418f-bbde-9631d185df42",
+    "parent": "8187fac9-ab42-4b97-bad1-cd885ee9955d",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.271942",
+    "stop": "2026-07-30T23:10:42.277429",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingevent#test_properties_return_values",
+    "monikers": [],
+    "pivots": {},
+    "instance": "d5aa1e42-7549-4be1-9d14-bcae180bcdd0",
+    "parent": "8187fac9-ab42-4b97-bad1-cd885ee9955d",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.282567",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingevent#test_properties_return_values",
+    "monikers": [],
+    "pivots": {},
+    "instance": "d5aa1e42-7549-4be1-9d14-bcae180bcdd0",
+    "parent": "8187fac9-ab42-4b97-bad1-cd885ee9955d",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.282567",
+    "stop": "2026-07-30T23:10:42.288743",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskinggroupscope",
+    "instance": "744c4485-604e-4c39-ac21-244a7e7cdc79",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskinggroupscope#test_cancel_tasks_collects_errors",
+    "monikers": [],
+    "pivots": {},
+    "instance": "128ec35f-f17f-49c9-9bb8-2bd3c0a1f7ee",
+    "parent": "744c4485-604e-4c39-ac21-244a7e7cdc79",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.300947",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskinggroupscope#test_cancel_tasks_collects_errors",
+    "monikers": [],
+    "pivots": {},
+    "instance": "128ec35f-f17f-49c9-9bb8-2bd3c0a1f7ee",
+    "parent": "744c4485-604e-4c39-ac21-244a7e7cdc79",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.300947",
+    "stop": "2026-07-30T23:10:42.307584",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskinggroupscope#test_clear_summary_progress_calls_recorder",
+    "monikers": [],
+    "pivots": {},
+    "instance": "87d6d155-48f6-4e3f-944e-04bd8a40976a",
+    "parent": "744c4485-604e-4c39-ac21-244a7e7cdc79",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.313909",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskinggroupscope#test_clear_summary_progress_calls_recorder",
+    "monikers": [],
+    "pivots": {},
+    "instance": "87d6d155-48f6-4e3f-944e-04bd8a40976a",
+    "parent": "744c4485-604e-4c39-ac21-244a7e7cdc79",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.313909",
+    "stop": "2026-07-30T23:10:42.320158",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskinggroupscope#test_finalize_sync_checks_in_nodes",
+    "monikers": [],
+    "pivots": {},
+    "instance": "9c35d903-3d34-498e-9e45-f159a63af61d",
+    "parent": "744c4485-604e-4c39-ac21-244a7e7cdc79",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.326301",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskinggroupscope#test_finalize_sync_checks_in_nodes",
+    "monikers": [],
+    "pivots": {},
+    "instance": "9c35d903-3d34-498e-9e45-f159a63af61d",
+    "parent": "744c4485-604e-4c39-ac21-244a7e7cdc79",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.326301",
+    "stop": "2026-07-30T23:10:42.333047",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskinggroupscope#test_notify_summary_progress_updates_recorder",
+    "monikers": [],
+    "pivots": {},
+    "instance": "006beb81-7327-4b5f-bb66-0948a75964a1",
+    "parent": "744c4485-604e-4c39-ac21-244a7e7cdc79",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.340457",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskinggroupscope#test_notify_summary_progress_updates_recorder",
+    "monikers": [],
+    "pivots": {},
+    "instance": "006beb81-7327-4b5f-bb66-0948a75964a1",
+    "parent": "744c4485-604e-4c39-ac21-244a7e7cdc79",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.340457",
+    "stop": "2026-07-30T23:10:42.347686",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskinggroupscope#test_update_group_records_results_once",
+    "monikers": [],
+    "pivots": {},
+    "instance": "c364be6f-c0db-4abb-bb61-e95bee86a823",
+    "parent": "744c4485-604e-4c39-ac21-244a7e7cdc79",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.354520",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskinggroupscope#test_update_group_records_results_once",
+    "monikers": [],
+    "pivots": {},
+    "instance": "c364be6f-c0db-4abb-bb61-e95bee86a823",
+    "parent": "744c4485-604e-4c39-ac21-244a7e7cdc79",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.354520",
+    "stop": "2026-07-30T23:10:42.361319",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingprogressmonitor",
+    "instance": "9d89ef6d-a517-400f-9ea0-70513d686372",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingprogressmonitor#test_pull_progress_entry_collects_completed_progress",
+    "monikers": [],
+    "pivots": {},
+    "instance": "5da3d572-4e86-49c9-9c23-2da893d0a1da",
+    "parent": "9d89ef6d-a517-400f-9ea0-70513d686372",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.375609",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingprogressmonitor#test_pull_progress_entry_collects_completed_progress",
+    "monikers": [],
+    "pivots": {},
+    "instance": "5da3d572-4e86-49c9-9c23-2da893d0a1da",
+    "parent": "9d89ef6d-a517-400f-9ea0-70513d686372",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.375609",
+    "stop": "2026-07-30T23:10:42.382456",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingprogressmonitor#test_pull_progress_entry_handles_missing_progress",
+    "monikers": [],
+    "pivots": {},
+    "instance": "762c1291-9ecb-41b8-a5aa-27b5ebb825f7",
+    "parent": "9d89ef6d-a517-400f-9ea0-70513d686372",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.390162",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingprogressmonitor#test_pull_progress_entry_handles_missing_progress",
+    "monikers": [],
+    "pivots": {},
+    "instance": "762c1291-9ecb-41b8-a5aa-27b5ebb825f7",
+    "parent": "9d89ef6d-a517-400f-9ea0-70513d686372",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.390162",
+    "stop": "2026-07-30T23:10:42.396887",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingprogressmonitor#test_release_removes_promise",
+    "monikers": [],
+    "pivots": {},
+    "instance": "84335a7d-02b9-45c6-9da2-a8c1b8ce42e6",
+    "parent": "9d89ef6d-a517-400f-9ea0-70513d686372",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.403156",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingprogressmonitor#test_release_removes_promise",
+    "monikers": [],
+    "pivots": {},
+    "instance": "84335a7d-02b9-45c6-9da2-a8c1b8ce42e6",
+    "parent": "9d89ef6d-a517-400f-9ea0-70513d686372",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.403156",
+    "stop": "2026-07-30T23:10:42.410821",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingprogressmonitor#test_start_runs_monitor_thread",
+    "monikers": [],
+    "pivots": {},
+    "instance": "8052f648-a0fe-43ca-9db3-da0e186d2997",
+    "parent": "9d89ef6d-a517-400f-9ea0-70513d686372",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.416985",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingprogressmonitor#test_start_runs_monitor_thread",
+    "monikers": [],
+    "pivots": {},
+    "instance": "8052f648-a0fe-43ca-9db3-da0e186d2997",
+    "parent": "9d89ef6d-a517-400f-9ea0-70513d686372",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.416985",
+    "stop": "2026-07-30T23:10:42.423502",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise",
+    "instance": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "parent": "7c2eb86c-7c28-4c82-afb4-db53e59392a6",
+    "rtype": "TEST_CONTAINER"
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_call_tasking_method_forwards_args",
+    "monikers": [],
+    "pivots": {},
+    "instance": "47a65d52-40fe-42bc-bc33-748166b31b1f",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.436193",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_call_tasking_method_forwards_args",
+    "monikers": [],
+    "pivots": {},
+    "instance": "47a65d52-40fe-42bc-bc33-748166b31b1f",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.436193",
+    "stop": "2026-07-30T23:10:42.441685",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_cancel_invokes_node",
+    "monikers": [],
+    "pivots": {},
+    "instance": "3e9520b8-a42b-4f66-94e6-506c892b1ca3",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.448984",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_cancel_invokes_node",
+    "monikers": [],
+    "pivots": {},
+    "instance": "3e9520b8-a42b-4f66-94e6-506c892b1ca3",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.448984",
+    "stop": "2026-07-30T23:10:42.457027",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_getters_return_node_values",
+    "monikers": [],
+    "pivots": {},
+    "instance": "24c432e9-8bbf-491a-b9eb-44957b0bed35",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.464263",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_getters_return_node_values",
+    "monikers": [],
+    "pivots": {},
+    "instance": "24c432e9-8bbf-491a-b9eb-44957b0bed35",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.464263",
+    "stop": "2026-07-30T23:10:42.472117",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_is_task_complete_relays_node",
+    "monikers": [],
+    "pivots": {},
+    "instance": "8ee583f1-ab90-479f-9ffc-76e5c77ef48a",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.478691",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_is_task_complete_relays_node",
+    "monikers": [],
+    "pivots": {},
+    "instance": "8ee583f1-ab90-479f-9ffc-76e5c77ef48a",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.478691",
+    "stop": "2026-07-30T23:10:42.485491",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_taskingref_as_dict",
+    "monikers": [],
+    "pivots": {},
+    "instance": "7d754ffb-f679-4998-87ce-454a232556b0",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.493249",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_taskingref_as_dict",
+    "monikers": [],
+    "pivots": {},
+    "instance": "7d754ffb-f679-4998-87ce-454a232556b0",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.493249",
+    "stop": "2026-07-30T23:10:42.500175",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_wait_completes_when_done",
+    "monikers": [],
+    "pivots": {},
+    "instance": "a368f60d-7bff-41a2-8a3c-fb918e38c0d3",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.508340",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_wait_completes_when_done",
+    "monikers": [],
+    "pivots": {},
+    "instance": "a368f60d-7bff-41a2-8a3c-fb918e38c0d3",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.508340",
+    "stop": "2026-07-30T23:10:42.516465",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_wait_timeout_raises_error",
+    "monikers": [],
+    "pivots": {},
+    "instance": "16d82754-379d-4d02-8467-82a79f4aaf74",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "UNSET",
+    "start": "2026-07-30T23:10:42.524787",
+    "stop": ""
+}
+{
+    "name": "automojo.tests.singlehost.interop.protocols.tasker.test_taskingresultpromise#test_wait_timeout_raises_error",
+    "monikers": [],
+    "pivots": {},
+    "instance": "16d82754-379d-4d02-8467-82a79f4aaf74",
+    "parent": "233eb0d9-0ac6-4559-bdaf-608b3f4e2677",
+    "rtype": "TEST",
+    "result": "PASSED",
+    "start": "2026-07-30T23:10:42.524787",
+    "stop": "2026-07-30T23:10:42.541402",
+    "detail": {
+        "errors": [],
+        "failures": [],
+        "warnings": []
+    }
+}
