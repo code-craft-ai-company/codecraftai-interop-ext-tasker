@@ -24,10 +24,11 @@ DEFAULT_INACTIVITY_INTERVAL = 0.5
 
 DEFAULT_PROGRESS_INTERVAL = 30
 
+from ccai.aspects.aspects import Aspects as AspectsBase
 from ccai.testbase.results.model.progressdelivery import ProgressDeliveryMethod
 
 
-class TaskerAspects:
+class TaskerAspects(AspectsBase):
     """
         Parameterization object describing task execution behavior.
     """
@@ -52,8 +53,8 @@ class TaskerAspects:
             :param sync_request_timeout: Timeout for synchronous requests.
         """
 
-        self.completion_timeout = completion_timeout
-        self.completion_interval = completion_interval
+        super().__init__(completion_interval=completion_interval, completion_timeout=completion_timeout)
+
         self.inactivity_timeout = inactivity_timeout
         self.inactivity_interval = inactivity_interval
         self.progress_delivery = progress_delivery
