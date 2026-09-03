@@ -115,7 +115,7 @@ class TaskingResultPromise:
             try:
                 self._responder.stop()
                 self._client.close()
-            except:
+            except Exception:
                 pass
 
         return

@@ -182,7 +182,7 @@ class TaskerServerDaemon(object):
                 os.close(fd)
             except OSError as os_err:
                 pass
-            except:
+            except Exception:
                 err_trace = traceback.format_exc()
                 write_trace(self._daemon_error_logfile, err_trace)
 
@@ -495,7 +495,7 @@ def tasker_daemon_main():
             sys.stderr.write("usage: %s start|stop|restart\n" % sys.argv[0])
             sys.exit(2)
 
-    except:
+    except Exception:
         err_trace = traceback.format_exc()
         sys.stderr.write(err_trace)
         sys.exit(1)

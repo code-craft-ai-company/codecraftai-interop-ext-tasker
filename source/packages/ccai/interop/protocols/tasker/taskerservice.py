@@ -702,7 +702,7 @@ class TaskerService(rpyc.Service):
 
         try:
             cls.logger.debug(message)
-        except:
+        except Exception:
             pass
 
         return
@@ -715,7 +715,7 @@ class TaskerService(rpyc.Service):
 
         try:
             cls.logger.error(message)
-        except:
+        except Exception:
             pass
 
         return
@@ -728,7 +728,7 @@ class TaskerService(rpyc.Service):
 
         try:
             cls.logger.info(message)
-        except:
+        except Exception:
             pass
 
         return
@@ -741,7 +741,7 @@ class TaskerService(rpyc.Service):
 
         try:
             cls.logger.warn(message)
-        except:
+        except Exception:
             pass
 
         return
