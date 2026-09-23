@@ -5,7 +5,7 @@ from ccai.testbase.results.model.progressinfo import ProgressInfo
 from ccai.testbase.results.model.progresscode import ProgressCode
 from ccai.testbase.results.model.progresstype import ProgressType
 
-from ccai.interop.protocols.tasker.taskinggroupscope import TaskingGroupScope, TaskingGroupState
+from ccai.interop.protocols.tasker.taskinggroupscope import TaskingGroupScope
 
 
 class DummyPromise:

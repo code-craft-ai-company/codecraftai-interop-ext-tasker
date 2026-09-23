@@ -21,8 +21,6 @@ from ccai.errors.exceptions import CommandError, SemanticError
 from ccai.interop.interfaces.isystemcontext import ISystemContext
 from ccai.xmodules.xformatting import format_command_result
 
-from ccai.interop.protocols.ssh.sshagent import SshSession
-
 if TYPE_CHECKING:
     from ccai.landscaping.clients.taskers.linux.linuxtaskerclient import LinuxTaskerClient
 
@@ -73,7 +71,7 @@ class CommandsExt:
                 raise SemanticError(errmsg)
 
             mount_cmd = f"mkdir -p {mpoint}"
-            status, stderr, stdout = session.run_cmd(mount_cmd)
+            status, stdout, stderr = session.run_cmd(mount_cmd)
             if status != 0:
                 errmsg = f"Error attempting to create mount point mpoint={mpoint}."
                 errmsg = format_command_result(errmsg, mount_cmd, status, stdout, stderr, exp_status=0)
@@ -98,7 +96,7 @@ class CommandsExt:
                 options += f"domain={domain}"
 
             mnt_cmd = f"mount -t cifs \"{share}\" \"{mpoint}\""
-            status, stderr, stdout = session.run_cmd(mnt_cmd)
+            status, stdout, stderr = session.run_cmd(mnt_cmd)
             if status != 0:
                 ipaddr = self.client.ipaddr
                 errmsg = f"Error attempting to mount cifs share={share} on mpoint={mpoint}."
@@ -129,14 +127,14 @@ class CommandsExt:
                 raise SemanticError(errmsg)
 
             mkdir_cmd = f"mkdir -p {mpoint}"
-            status, stderr, stdout = session.run_cmd(mkdir_cmd)
+            status, stdout, stderr = session.run_cmd(mkdir_cmd)
             if status != 0:
                 errmsg = f"Error attempting to create mount point mpoint={mpoint}."
                 errmsg = format_command_result(errmsg, mkdir_cmd, status, stdout, stderr, exp_status=0)
                 raise CommandError(errmsg, status, stdout, stderr)
 
             mnt_cmd = f"mount -t nfs {host}:\"{export}\" \"{mpoint}\""
-            status, stderr, stdout = session.run_cmd(mnt_cmd)
+            status, stdout, stderr = session.run_cmd(mnt_cmd)
             if status != 0:
                 ipaddr = self.client.ipaddr
                 errmsg = f"Error attempting to mount nfsmoun export={export} on mpoint={mpoint}."
@@ -160,7 +158,7 @@ class CommandsExt:
         session: ISystemContext
         with sysctx.open_session(basis_session=basis_session) as session:
             command = f'sudo logger "{msg}"'
-            status, stderr, stdout = session.run_cmd(command)
+            status, stdout, stderr = session.run_cmd(command)
             if status != 0:
                 ipaddr = self.client.ipaddr
                 errmsg = f"Error attempting to log a message."
@@ -185,7 +183,7 @@ class CommandsExt:
         with sysctx.open_session(basis_session=basis_session) as session:
 
             mnt_cmd = f"umount {flags} \"{mpoint}\""
-            status, stderr, stdout = session.run_cmd(mnt_cmd)
+            status, stdout, stderr = session.run_cmd(mnt_cmd)
             if status != 0:
                 errmsg = f"Error attempting to unmount mpoint={mpoint}."
                 errmsg = format_command_result(errmsg, mnt_cmd, status, stdout, stderr, exp_status=0)

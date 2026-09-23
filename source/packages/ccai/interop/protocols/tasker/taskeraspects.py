@@ -78,7 +78,7 @@ class TaskerAspects(AspectsBase):
         return data
 
     @classmethod
-    def from_dict(self, data: dict) -> "TaskerAspects":
+    def from_dict(cls, data: dict) -> "TaskerAspects":
         """
             Creates a :class:`TaskerAspects` from a dictionary.
             

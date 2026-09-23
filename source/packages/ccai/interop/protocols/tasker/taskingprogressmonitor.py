@@ -122,7 +122,7 @@ class TaskingProgressMonitor:
                 progress = None
                 try:
                     progress = prom_item.get_progress()
-                except BaseException:
+                except Exception:
                     continue
 
                 if (

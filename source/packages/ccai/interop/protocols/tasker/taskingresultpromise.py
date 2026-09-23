@@ -116,6 +116,7 @@ class TaskingResultPromise:
                 self._responder.stop()
                 self._client.close()
             except Exception:
+                # Best-effort finalizer cleanup; the connection may already be closed and exceptions cannot propagate out of __del__.
                 pass
 
         return

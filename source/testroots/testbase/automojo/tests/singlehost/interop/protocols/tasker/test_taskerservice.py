@@ -28,14 +28,14 @@ def test_locked_get_session_validations() -> None:
     exc = None
     try:
         service._locked_get_session(None)  # type: ignore[arg-type]
-    except BaseException as err:  # pylint: disable=broad-except
+    except ValueError as err:
         exc = err
     testbase.assert_equal(isinstance(exc, ValueError), True)
 
     exc = None
     try:
         service._locked_get_session("missing")
-    except BaseException as err:  # pylint: disable=broad-except
+    except SemanticError as err:
         exc = err
     testbase.assert_equal(isinstance(exc, SemanticError), True)
 
@@ -45,7 +45,7 @@ def test_locked_get_session_validations() -> None:
     exc = None
     try:
         service._locked_get_session("bogus")
-    except BaseException as err:  # pylint: disable=broad-except
+    except SemanticError as err:
         exc = err
     testbase.assert_equal(isinstance(exc, SemanticError), True)
 

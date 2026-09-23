@@ -232,7 +232,6 @@ class TaskingGroupScope:
             errmsg = f"The tasking group '{self._name}' has already been started."
             raise SemanticError(errmsg)
 
-        adapter = self.adapter
         parent_id = self._tgroup.inst_id
 
         new_promises = self._controller.execute_tasking_on_node_list(
@@ -275,7 +274,6 @@ class TaskingGroupScope:
             errmsg = f"The tasking group '{self._name}' has already been started."
             raise SemanticError(errmsg)
 
-        adapter = self.adapter
         parent_id = self._tgroup.inst_id
 
         promise = self._controller.execute_tasking_on_node(
@@ -321,8 +319,6 @@ class TaskingGroupScope:
         """
             Synchronize results for all promises.
         """
-        adapter = self.adapter
-
         if len(self._promises) > 0:
             self.wait_for_tasking_results()
 
@@ -339,7 +335,7 @@ class TaskingGroupScope:
             aspects = self._aspects
 
         events_found = self._controller.wait_for_all_to_event(
-            event_name, self._promises
+            event_name, self._promises, aspects=aspects
         )
 
         return events_found
@@ -355,7 +351,7 @@ class TaskingGroupScope:
             aspects = self._aspects
 
         events_found = self._controller.wait_for_any_to_event(
-            event_name, self._promises
+            event_name, self._promises, aspects=aspects
         )
 
         return events_found

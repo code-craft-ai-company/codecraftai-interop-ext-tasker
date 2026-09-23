@@ -1,4 +1,3 @@
-import threading
 import tempfile
 import ccai.testbase as testbase
 

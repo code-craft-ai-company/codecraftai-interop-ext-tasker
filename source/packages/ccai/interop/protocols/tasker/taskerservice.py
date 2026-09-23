@@ -703,6 +703,7 @@ class TaskerService(rpyc.Service):
         try:
             cls.logger.debug(message)
         except Exception:
+            # Service logging is best-effort diagnostics; a logging failure must not fail the service call that is reporting.
             pass
 
         return
@@ -716,6 +717,7 @@ class TaskerService(rpyc.Service):
         try:
             cls.logger.error(message)
         except Exception:
+            # Service logging is best-effort diagnostics; a logging failure must not fail the service call that is reporting.
             pass
 
         return
@@ -729,6 +731,7 @@ class TaskerService(rpyc.Service):
         try:
             cls.logger.info(message)
         except Exception:
+            # Service logging is best-effort diagnostics; a logging failure must not fail the service call that is reporting.
             pass
 
         return
@@ -742,6 +745,7 @@ class TaskerService(rpyc.Service):
         try:
             cls.logger.warn(message)
         except Exception:
+            # Service logging is best-effort diagnostics; a logging failure must not fail the service call that is reporting.
             pass
 
         return
@@ -788,7 +792,7 @@ class TaskerService(rpyc.Service):
         if not os.path.exists(logging_dir):
             try:
                 os.makedirs(logging_dir)
-            except BaseException:
+            except Exception:
                 logging_dir = tempfile.mkdtemp()
                 this_type.logging_directory = logging_dir
 

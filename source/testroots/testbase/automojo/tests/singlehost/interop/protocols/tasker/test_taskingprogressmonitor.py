@@ -35,7 +35,7 @@ def test_pull_progress_entry_handles_missing_progress() -> None:
     exc = None
     try:
         monitor._pull_progress_entry(sgate)
-    except BaseException as err:
+    except Exception as err:
         exc = err
 
     testbase.assert_equal(exc, None)

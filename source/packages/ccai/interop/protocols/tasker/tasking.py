@@ -31,15 +31,12 @@ from pprint import pformat
 
 from dataclasses import dataclass
 from datetime import datetime
-from logging import FileHandler
 
 from uuid import uuid4
 
 from ccai.errors.exceptions import AbstractMethodError, SemanticError
-from ccai.errors.xtraceback import create_traceback_detail, format_traceback_detail
+from ccai.errors.xtraceback import TracebackDetail, create_traceback_detail, format_traceback_detail
 
-from ccai.testbase.results.model.resultcode import ResultCode
-from ccai.testbase.results.model.resulttype import ResultType
 from ccai.testbase.results.model.progressinfo import ProgressInfo, ProgressType
 from ccai.testbase.results.model.progresscode import ProgressCode
 from ccai.testbase.results.model.taskingresult import TaskingResult
@@ -102,7 +99,7 @@ def instantiate_tasking(
 
         logging.basicConfig(format=logging.BASIC_FORMAT, level=log_level)
 
-        log_handler = FileHandler(logfile)
+        log_handler = logging.FileHandler(logfile)
         log_handler.setLevel(log_level)
 
         logger = getEnhancedLogger("TASKING")
@@ -510,13 +507,19 @@ class Tasking:
         """
         backup_detail = traceback.format_exc()
 
+        # The detail recorded when a traceback detail cannot be created for the error: the error type with
+        # the backup traceback text in place of the parsed arguments and frames, so the error is still
+        # reported in the tasking result.
+        errtype_name = type(err).__name__
+        tbdetail = TracebackDetail(extype=errtype_name, exargs=[backup_detail], traces=[])
+
         try:
             # Make sure we don't throw an exception formatting a traceback
             # if we do, we will end up using the backup traceback
             tbdetail = create_traceback_detail(err)
 
             errmsg = format_traceback_detail(tbdetail)
-        except BaseException as fmterr:
+        except Exception as fmterr:
             fmterr_msg = traceback.format_exc()
             self._logger.error(fmterr_msg)
 

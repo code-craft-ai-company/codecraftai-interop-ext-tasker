@@ -181,6 +181,7 @@ class TaskerServerDaemon(object):
             try:
                 os.close(fd)
             except OSError as os_err:
+                # The descriptor may already have been closed; it only needs closing when it is still open.
                 pass
             except Exception:
                 err_trace = traceback.format_exc()
@@ -188,14 +189,14 @@ class TaskerServerDaemon(object):
 
         # Create the standard file descriptors and redirect them to the standard file descriptor
         # numbers 0 stdin, 1 stdout, 2 stderr
-        stdin_f = open(self.DEFAULT_DEVNULL, "r")
-        os.dup2(stdin_f.fileno(), stdin_fileno)
+        with open(self.DEFAULT_DEVNULL, "r") as stdin_f:
+            os.dup2(stdin_f.fileno(), stdin_fileno)
 
-        stdout_f = open(self.DEFAULT_DEVNULL, "a+")
-        os.dup2(stdout_f.fileno(), stdout_fileno)
+        with open(self.DEFAULT_DEVNULL, "a+") as stdout_f:
+            os.dup2(stdout_f.fileno(), stdout_fileno)
 
-        stderr_f = open(self.DEFAULT_DEVNULL, "a+")
-        os.dup2(stderr_f.fileno(), stderr_fileno)
+        with open(self.DEFAULT_DEVNULL, "a+") as stderr_f:
+            os.dup2(stderr_f.fileno(), stderr_fileno)
 
         write_trace(self._daemon_logfile, "Registering remove_pidfile ...")
         # Register an the removal of the PID file on python interpreter exit
