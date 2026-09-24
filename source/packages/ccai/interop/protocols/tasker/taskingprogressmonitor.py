@@ -18,6 +18,7 @@ import weakref
 
 from ccai.testbase.results.model.progressdelivery import SummaryProgressDelivery
 from ccai.testbase.results.model.progresscode import ProgressCode
+from ccai.testbase.results.model.taskingresult import TaskingResult
 
 
 if TYPE_CHECKING:
@@ -51,18 +52,40 @@ class TaskingProgressMonitor:
             pr.tasking_id: weakref.ref(pr) for pr in monitored_promises
         }
         self._clear_progress_for = [pr.tasking_id for pr in monitored_promises]
+
+        self._pulling_progress = False
+        self._progress_thread = None
+        return
+
+    def add_promise(self, promise: "TaskingResultPromise"):
+        """
+            Starts monitoring progress for the tasking of the specified promise.  Add the promises before
+            calling :meth:`start`; the monitor stops once no monitored promise remains.
+
+            :param promise: The promise of the tasking to monitor.
+        """
+
+        self._lock.acquire()
+        try:
+            self._monitored_promise_refs[promise.tasking_id] = weakref.ref(promise)
+            self._clear_progress_for.append(promise.tasking_id)
+        finally:
+            self._lock.release()
+
         return
 
     def release(self, tasking_id: str):
         """
-            Stops monitoring progress for the specified tasking.
-            
+            Stops monitoring progress for the specified tasking.  Releasing a tasking that is no longer
+            monitored, because it already completed or was released before, has no effect.
+
             :param tasking_id: The identifier of the tasking to release.
         """
 
         self._lock.acquire()
         try:
-            del self._monitored_promise_refs[tasking_id]
+            if tasking_id in self._monitored_promise_refs:
+                del self._monitored_promise_refs[tasking_id]
         finally:
             self._lock.release()
 
@@ -103,20 +126,25 @@ class TaskingProgressMonitor:
 
             time.sleep(self._progress_interval)
 
-            promises: List["TaskingResultPromise"] = []
+            promise_refs = []
             self._lock.acquire()
             try:
                 if len(self._monitored_promise_refs) == 0:
                     break
 
-                for pref in self._monitored_promise_refs.values():
-                    p = pref()
-                    if p is not None:
-                        promises.append(p)
+                promise_refs = list(self._monitored_promise_refs.values())
             finally:
                 self._lock.release()
 
-            completed_list: List["TaskingResultPromise"] = []
+            # Resolve the references outside of the lock, dropping the last reference to a promise runs its
+            # finalizer, which releases the promise from this monitor and takes the lock.
+            promises: List["TaskingResultPromise"] = []
+            for pref in promise_refs:
+                p = pref()
+                if p is not None:
+                    promises.append(p)
+
+            completed_ids: List[str] = []
             progress_list = []
             for prom_item in promises:
                 progress = None
@@ -125,20 +153,32 @@ class TaskingProgressMonitor:
                 except Exception:
                     continue
 
+                if progress is None:
+                    # The tasking has not reported any progress yet.
+                    continue
+
+                if isinstance(progress, TaskingResult):
+                    # The session replaces the last progress of a finished tasking with its result.  The
+                    # tasking is complete and there is no progress entry left to deliver for it.
+                    completed_ids.append(prom_item.tasking_id)
+                    continue
+
                 if (
                     progress.status != ProgressCode.NotStarted
                     and progress.status != ProgressCode.Paused
                     and progress.status != ProgressCode.Running
                 ):
-                    completed_list.append(progress)
+                    # Completion is keyed by the promise because a :class:`ProgressInfo` carries the
+                    # tasking id in its 'id' field and not in a 'tasking_id' field.
+                    completed_ids.append(prom_item.tasking_id)
 
                 progress_list.append(progress)
 
             self._lock.acquire()
             try:
-                for prog in completed_list:
-                    tasking_id = prog.tasking_id
-                    del self._monitored_promise_refs[tasking_id]
+                for tasking_id in completed_ids:
+                    if tasking_id in self._monitored_promise_refs:
+                        del self._monitored_promise_refs[tasking_id]
             finally:
                 self._lock.release()
 

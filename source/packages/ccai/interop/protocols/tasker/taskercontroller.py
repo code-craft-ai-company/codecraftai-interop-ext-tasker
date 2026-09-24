@@ -251,11 +251,29 @@ class TaskerController:
 
         return
 
-    def start_tasker_network(self):
+    def start_tasker_network(
+        self,
+        clients: Optional[List[INetworkClient]] = None,
+        output_directory: Optional[str] = None,
+        log_level: Optional[int] = logging.DEBUG,
+    ):
         """
             Starts the tasker network.  Must be implemented by subclasses.
+
+            The parameters describe the common shape of the overrides so a caller holding a
+            :class:`TaskerController` reference can start any controller.  Controllers that build
+            their network from existing clients (:class:`ClientTaskerController`) require ``clients``;
+            controllers that spawn their own nodes (:class:`ProcessTaskerController`) take a node
+            count in its place.
+
+            :param clients: The network clients to start tasker nodes on, for controllers that use
+                            existing clients.
+            :param output_directory: Optional directory for task outputs.
+            :param log_level: Logging level for the tasker servers.
+
+            :raises: AbstractMethodError
         """
-        raise AbstractMethodError("The 'start_task_network' method must be overloaded.")
+        raise AbstractMethodError("The 'start_tasker_network' method must be overloaded.")
 
     def stop_tasker_network(self):
         """
@@ -594,17 +612,29 @@ class ClientTaskerController(TaskerController):
 
     def start_tasker_network(
         self,
-        clients: List[INetworkClient],
+        clients: Optional[List[INetworkClient]] = None,
         output_directory: Optional[str] = None,
         log_level: Optional[int] = logging.DEBUG,
     ):
         """
             Starts a tasker network using existing client connections.
 
-            :param clients: List of network clients to use.
+            :param clients: List of network clients to use.  It is required; it is only optional in
+                            the signature so the override matches :meth:`TaskerController.start_tasker_network`.
             :param output_directory: Optional directory for task outputs.
             :param log_level: Logging level for the servers.
+
+            :raises: SemanticError when ``clients`` is not provided or the network was already started.
         """
+        if clients is None:
+            errmsg_lines = [
+                "ClientTaskerController.start_tasker_network requires the 'clients' parameter.",
+                "Pass the list of network clients that host the tasker services, for example:",
+                "    controller.start_tasker_network(clients, output_directory=output_directory)",
+            ]
+            errmsg = os.linesep.join(errmsg_lines)
+            raise SemanticError(errmsg)
+
         if self._network_started:
             errmsg = "A task network has already been started."
             raise SemanticError(errmsg)

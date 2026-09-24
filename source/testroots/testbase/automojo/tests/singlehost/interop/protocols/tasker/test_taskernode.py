@@ -1,10 +1,17 @@
 import pickle
 import logging
+import threading
+
+from datetime import datetime
+
 import ccai.testbase as testbase
 from ccai.interop.protocols.tasker.taskernode import TaskerNode
 from ccai.interop.protocols.tasker.taskeraspects import TaskerAspects
 import ccai.interop.protocols.tasker.taskernode as taskernode
 from ccai.testbase.mocking import create_module_patch
+from ccai.testbase.results.model.progresscode import ProgressCode
+from ccai.testbase.results.model.progressdelivery import SummaryProgressDelivery
+from ccai.testbase.results.model.progressinfo import ProgressInfo, ProgressType
 
 
 class DummyRoot:
@@ -122,8 +129,10 @@ def test_execute_tasking_returns_promise():
         dummy_thread = object()
         mock_thread.configure(return_value=dummy_thread)
         captured = []
-        def promise_ctor(*args):
+        captured_kwargs = []
+        def promise_ctor(*args, **kwargs):
             captured.append(args)
+            captured_kwargs.append(kwargs)
             return DummyPromise(*args)
         mock_promise.configure(side_effect=promise_ctor)
 
@@ -146,6 +155,9 @@ def test_execute_tasking_returns_promise():
     testbase.assert_equal(captured[0][5], "/logs")
     testbase.assert_equal(captured[0][6], "SID")
     testbase.assert_equal(captured[0][7], node)
+    # Without a summary progress delivery no progress monitor is attached to the promise.
+    testbase.assert_equal(captured_kwargs[0], {"progress_monitor": None})
+    testbase.assert_equal("summary_progress" in call, False)
     return
 
 
@@ -161,4 +173,74 @@ def test_call_tasking_method_pickles_arguments():
     testbase.assert_equal(result, "RESP")
     testbase.assert_equal(client.closed, True)
     testbase.assert_equal(root.call_tasking_method_args, [("SID", "tid", "meth", [1, 2], {"k": 3})])
+    return
+
+
+class ProgressRoot(DummyRoot):
+    """
+        A tasker service root that reports a completed progress entry for every tasking.
+    """
+
+    def __init__(self, progress):
+        super().__init__()
+        self._progress = progress
+        self.progress_requests = []
+        return
+
+    def get_tasking_progress(self, **kwargs):
+        self.progress_requests.append(kwargs)
+        return pickle.dumps(self._progress)
+
+
+class DummyResponder:
+    def __init__(self):
+        self.stopped = False
+
+    def stop(self):
+        self.stopped = True
+        return
+
+
+def test_execute_tasking_delivers_summary_progress_to_the_callback():
+    """
+        The summary progress delivery resolved by execute_tasking (here the node default) is used: the
+        returned promise gets a progress monitor that pulls the tasking progress and passes it to the
+        delivery's callback, and the delivery itself is not sent to the remote tasker.
+    """
+    progress = ProgressInfo("tid", "cat", "mod@Task", ProgressType.NumericRange, 0, 10, 10,
+                            ProgressCode.Completed, datetime.now(), {})
+    root = ProgressRoot(progress)
+    client = DummyClient(root)
+
+    delivered = []
+    callback_called = threading.Event()
+
+    def progress_callback(progress_list):
+        delivered.append(progress_list)
+        callback_called.set()
+        return
+
+    summary = SummaryProgressDelivery(progress_interval=0.0, progress_callback=progress_callback)
+
+    node = TaskerNode("1.2.3.4", 11, summary_progress=summary)
+    node._session_id = "SID"
+    node._create_connection = lambda: client
+
+    with create_module_patch(taskernode.rpyc, "BgServingThread") as mock_thread:
+        mock_thread.configure(return_value=DummyResponder())
+        prom = node.execute_tasking(module_name="mod", tasking_name="Task")
+
+    testbase.assert_equal(callback_called.wait(timeout=5), True)
+
+    monitor = prom._progress_monitor
+    testbase.assert_true(monitor is not None, "a progress monitor is attached to the promise")
+    monitor._progress_thread.join(timeout=5)
+
+    testbase.assert_equal(len(delivered), 1)
+    testbase.assert_equal(delivered[0][0].id, "tid")
+    testbase.assert_equal(delivered[0][0].status, ProgressCode.Completed)
+    testbase.assert_equal(root.progress_requests[0], {"session_id": "SID", "tasking_id": "tid"})
+    testbase.assert_equal("summary_progress" in root.execute_tasking_args[0], False)
+
+    prom.close()
     return

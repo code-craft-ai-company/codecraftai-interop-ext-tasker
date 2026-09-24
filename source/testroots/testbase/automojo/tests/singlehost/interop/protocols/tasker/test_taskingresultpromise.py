@@ -1,3 +1,5 @@
+import gc
+
 import ccai.testbase as testbase
 
 from ccai.interop.protocols.tasker.taskingresultpromise import (
@@ -7,12 +9,46 @@ from ccai.interop.protocols.tasker.taskingresultpromise import (
 
 
 class DummyClient:
+    def __init__(self, calls=None):
+        self.close_count = 0
+        self._calls = calls
+        return
+
     def close(self):
+        self.close_count += 1
+        if self._calls is not None:
+            self._calls.append("client.close")
         return
 
 
 class DummyResponder:
+    def __init__(self, calls=None):
+        self.stop_count = 0
+        self._calls = calls
+        return
+
     def stop(self):
+        self.stop_count += 1
+        if self._calls is not None:
+            self._calls.append("responder.stop")
+        return
+
+
+class FailingResponder:
+    def stop(self):
+        raise RuntimeError("responder stop failed")
+
+
+class DummyMonitor:
+    def __init__(self, calls=None):
+        self.released = []
+        self._calls = calls
+        return
+
+    def release(self, tasking_id):
+        self.released.append(tasking_id)
+        if self._calls is not None:
+            self._calls.append("monitor.release")
         return
 
 
@@ -135,4 +171,153 @@ def test_wait_timeout_raises_error() -> None:
     except Exception as err:
         exc = err
     testbase.assert_equal(isinstance(exc, TimeoutError), True)
+    return
+
+
+def create_closable_promise(client, responder, monitor=None) -> TaskingResultPromise:
+    return TaskingResultPromise(
+        client,
+        responder,
+        "module",
+        "taskid",
+        "Task",
+        "/tmp",
+        "sess",
+        DummyNode(),
+        progress_monitor=monitor,
+    )
+
+
+def test_close_releases_monitor_stops_responder_and_closes_client() -> None:
+    """
+        close() releases the progress monitoring of the tasking, stops the responder thread and closes the
+        dedicated client, in that order.
+    """
+    calls = []
+    client = DummyClient(calls)
+    responder = DummyResponder(calls)
+    monitor = DummyMonitor(calls)
+    prom = create_closable_promise(client, responder, monitor)
+
+    testbase.assert_equal(prom.closed, False)
+    prom.close()
+
+    testbase.assert_equal(prom.closed, True)
+    testbase.assert_equal(calls, ["monitor.release", "responder.stop", "client.close"])
+    testbase.assert_equal(monitor.released, ["taskid"])
+    return
+
+
+def test_close_is_idempotent() -> None:
+    """
+        Closing a promise more than once, including the finalizer running after an explicit close, releases
+        its resources only once.
+    """
+    client = DummyClient()
+    responder = DummyResponder()
+    monitor = DummyMonitor()
+    prom = create_closable_promise(client, responder, monitor)
+
+    prom.close()
+    prom.close()
+    # Dropping the last reference runs the __del__ fallback, which must not close anything again.
+    del prom
+    gc.collect()
+
+    testbase.assert_equal(client.close_count, 1)
+    testbase.assert_equal(responder.stop_count, 1)
+    testbase.assert_equal(monitor.released, ["taskid"])
+    return
+
+
+def test_context_manager_closes_the_promise() -> None:
+    """
+        Using the promise as a context manager closes it when the context exits.
+    """
+    client = DummyClient()
+    responder = DummyResponder()
+
+    with create_closable_promise(client, responder) as prom:
+        testbase.assert_equal(prom.closed, False)
+
+    testbase.assert_equal(prom.closed, True)
+    testbase.assert_equal(client.close_count, 1)
+    testbase.assert_equal(responder.stop_count, 1)
+    return
+
+
+def test_context_manager_closes_the_promise_and_propagates_errors() -> None:
+    """
+        An error raised inside the context still closes the promise and is not swallowed.
+    """
+    client = DummyClient()
+    responder = DummyResponder()
+
+    raised = None
+    prom = None
+    try:
+        with create_closable_promise(client, responder) as prom:
+            raise ValueError("inside the context")
+    except ValueError as xcpt:
+        raised = xcpt
+
+    testbase.assert_true(raised is not None, "the error raised inside the context propagates")
+    testbase.assert_equal(prom.closed, True)
+    testbase.assert_equal(client.close_count, 1)
+    return
+
+
+def test_close_closes_the_client_when_the_responder_fails_to_stop() -> None:
+    """
+        A responder that fails to stop does not leave the client open, and the failure reaches the caller
+        of an explicit close.
+    """
+    client = DummyClient()
+    prom = create_closable_promise(client, FailingResponder())
+
+    raised = None
+    try:
+        prom.close()
+    except RuntimeError as xcpt:
+        raised = xcpt
+
+    testbase.assert_true(raised is not None, "the responder failure propagates from close()")
+    testbase.assert_equal(client.close_count, 1)
+    testbase.assert_equal(prom.closed, True)
+
+    # The finalizer does not retry the failed close and does not raise.
+    del prom
+    gc.collect()
+    testbase.assert_equal(client.close_count, 1)
+    return
+
+
+def test_close_closes_the_client_without_a_responder() -> None:
+    """
+        A promise created without a responder thread still closes its client.
+    """
+    client = DummyClient()
+    prom = create_closable_promise(client, None)
+
+    prom.close()
+
+    testbase.assert_equal(client.close_count, 1)
+    return
+
+
+def test_finalizer_closes_an_unclosed_promise() -> None:
+    """
+        The finalizer remains as a fallback and closes a promise that was not closed explicitly.
+    """
+    client = DummyClient()
+    responder = DummyResponder()
+    monitor = DummyMonitor()
+    prom = create_closable_promise(client, responder, monitor)
+
+    del prom
+    gc.collect()
+
+    testbase.assert_equal(client.close_count, 1)
+    testbase.assert_equal(responder.stop_count, 1)
+    testbase.assert_equal(monitor.released, ["taskid"])
     return

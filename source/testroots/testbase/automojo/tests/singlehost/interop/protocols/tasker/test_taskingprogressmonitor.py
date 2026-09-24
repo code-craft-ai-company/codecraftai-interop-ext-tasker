@@ -1,9 +1,14 @@
 import threading
 import weakref
+
+from datetime import datetime
+
 import ccai.testbase as testbase
 
 from ccai.testbase.results.model.progressdelivery import SummaryProgressDelivery
 from ccai.testbase.results.model.progresscode import ProgressCode
+from ccai.testbase.results.model.progressinfo import ProgressInfo, ProgressType
+from ccai.testbase.results.model.taskingresult import TaskingResult
 from ccai.interop.protocols.tasker.taskingprogressmonitor import TaskingProgressMonitor
 
 
@@ -128,5 +133,104 @@ def test_start_runs_monitor_thread() -> None:
     monitor._progress_thread.join(timeout=1)
 
     testbase.assert_equal(len(updates) >= 1, True)
+    testbase.assert_equal(len(monitor._monitored_promise_refs), 0)
+    return
+
+
+class SequencePromise:
+    """
+        Promise that returns a scripted sequence of progress values and stops the monitor after the last one.
+    """
+
+    def __init__(self, tasking_id: str, progress_values: list):
+        self.tasking_id = tasking_id
+        self.monitor = None
+        self._progress_values = list(progress_values)
+
+    def get_progress(self):
+        progress = self._progress_values.pop(0)
+        if len(self._progress_values) == 0 and self.monitor is not None:
+            self.monitor._pulling_progress = False
+        return progress
+
+
+def test_add_promise_registers_the_promise() -> None:
+    summary = SummaryProgressDelivery(progress_interval=0.0, progress_callback=lambda _: None)
+    monitor = TaskingProgressMonitor(summary, [])
+
+    prom = DummyPromise("added")
+    monitor.add_promise(prom)
+
+    testbase.assert_equal(list(monitor._monitored_promise_refs.keys()), ["added"])
+    testbase.assert_true(monitor._monitored_promise_refs["added"]() is prom, "the monitor references the promise")
+    return
+
+
+def test_release_of_an_unmonitored_tasking_is_ignored() -> None:
+    """
+        Releasing a tasking the monitor already dropped (it completed, or it was released before) does not
+        raise, so a promise can always release itself when it is closed.
+    """
+    summary = SummaryProgressDelivery(progress_interval=0.0, progress_callback=lambda _: None)
+    prom = DummyPromise("once")
+    monitor = TaskingProgressMonitor(summary, [prom])
+
+    monitor.release("once")
+    monitor.release("once")
+    monitor.release("never-monitored")
+
+    testbase.assert_equal(len(monitor._monitored_promise_refs), 0)
+    return
+
+
+def test_pull_progress_entry_completes_a_tasking_from_its_progress_info() -> None:
+    """
+        A tasking with no progress yet is skipped, and a real :class:`ProgressInfo` (which carries the tasking
+        id in 'id') that reports completion ends the monitoring of the tasking.
+    """
+    updates = []
+
+    def progress_callback(progress_list):
+        updates.append(progress_list)
+        return
+
+    summary = SummaryProgressDelivery(progress_interval=0.0, progress_callback=progress_callback)
+    monitor = TaskingProgressMonitor(summary, [])
+
+    done = ProgressInfo("pinfo", "cat", "mod@Task", ProgressType.NumericRange, 0, 1, 1,
+                        ProgressCode.Completed, datetime.now(), {})
+    prom = SequencePromise("pinfo", [None, done])
+    prom.monitor = monitor
+    monitor.add_promise(prom)
+
+    monitor._pull_progress_entry(threading.Event())
+
+    testbase.assert_equal(updates, [[], [done]])
+    testbase.assert_equal(len(monitor._monitored_promise_refs), 0)
+    return
+
+
+def test_pull_progress_entry_completes_a_tasking_from_its_result() -> None:
+    """
+        Once the session replaced the progress of a finished tasking with its :class:`TaskingResult`, the
+        tasking is complete and the result is not delivered as a progress entry.
+    """
+    updates = []
+
+    def progress_callback(progress_list):
+        updates.append(progress_list)
+        return
+
+    summary = SummaryProgressDelivery(progress_interval=0.0, progress_callback=progress_callback)
+    monitor = TaskingProgressMonitor(summary, [])
+
+    result = TaskingResult("tresult", "Task", "parent", "worker")
+    prom = SequencePromise("tresult", [result])
+    prom.monitor = monitor
+    monitor.add_promise(prom)
+
+    monitor._pull_progress_entry(threading.Event())
+
+    testbase.assert_equal(updates, [[]])
     testbase.assert_equal(len(monitor._monitored_promise_refs), 0)
     return

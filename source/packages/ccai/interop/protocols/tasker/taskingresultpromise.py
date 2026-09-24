@@ -98,26 +98,75 @@ class TaskingResultPromise:
         self._node = node
 
         self._progress_monitor = progress_monitor
+
+        self._closed = False
         return
+
+    def __enter__(self) -> "TaskingResultPromise":
+        """
+            Enters a context that closes the promise when it exits.
+
+            :returns: This :class:`TaskingResultPromise` instance.
+        """
+        return self
+
+    def __exit__(self, ex_type, ex_inst, ex_tb) -> bool:
+        """
+            Closes the promise when the context exits.
+
+            :returns: ``False`` so any exception raised in the context propagates.
+        """
+        self.close()
+        return False
 
     def __del__(self):
         """
-            Cleans up the promise and stops the responder thread.
+            Fallback cleanup for a promise that was not closed explicitly.
+        """
+        try:
+            self.close()
+        except Exception:
+            # Exceptions cannot propagate out of a finalizer.  Call 'close' explicitly, or use the promise
+            # as a context manager, to see errors raised while releasing the connection.
+            pass
+        return
+
+    @property
+    def closed(self) -> bool:
+        """
+            Indicates if the promise has been closed.
+
+            :returns: ``True`` once :meth:`close` has run.
+        """
+        return self._closed
+
+    def close(self):
+        """
+            Releases the resources held by the promise: stops the progress monitoring of the tasking, stops the
+            responder thread and closes the dedicated client connection.  Calling it more than once has no
+            further effect.
+
+            The client connection is kept open until the promise is closed because the remote end may still be
+            using NetRef objects that are served over it, so only close the promise once the tasking is done
+            with them.  The methods that query the tasking go through the node and keep working after close.
         """
 
-        if self._progress_monitor is not None:
-            self._progress_monitor.release(self._tasking_id)
+        if self._closed:
+            return
 
-        # Keep the task run client open until this object
-        # is destroyed in case there are NetRef objects that are
-        # being used by the remote end.
-        if self._responder is not None:
+        # Mark the promise closed first so a failure below is not retried by the finalizer.
+        self._closed = True
+
+        try:
+            if self._progress_monitor is not None:
+                self._progress_monitor.release(self._tasking_id)
+        finally:
             try:
-                self._responder.stop()
-                self._client.close()
-            except Exception:
-                # Best-effort finalizer cleanup; the connection may already be closed and exceptions cannot propagate out of __del__.
-                pass
+                if self._responder is not None:
+                    self._responder.stop()
+            finally:
+                if self._client is not None:
+                    self._client.close()
 
         return
 

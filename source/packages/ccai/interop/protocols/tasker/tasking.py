@@ -518,7 +518,8 @@ class Tasking:
             # if we do, we will end up using the backup traceback
             tbdetail = create_traceback_detail(err)
 
-            errmsg = format_traceback_detail(tbdetail)
+            errmsg_lines = format_traceback_detail(tbdetail)
+            errmsg = os.linesep.join(errmsg_lines)
         except Exception as fmterr:
             fmterr_msg = traceback.format_exc()
             self._logger.error(fmterr_msg)
@@ -540,7 +541,8 @@ class Tasking:
 
         tbdetail = create_traceback_detail(err)
 
-        errmsg = format_traceback_detail(tbdetail)
+        errmsg_lines = format_traceback_detail(tbdetail)
+        errmsg = os.linesep.join(errmsg_lines)
         self._logger.error(errmsg)
 
         self._result.add_failure(tbdetail)

@@ -1,10 +1,12 @@
 import ccai.testbase as testbase
 
-from ccai.interop.protocols.tasker.taskercontroller import TaskerController
+from ccai.errors.exceptions import AbstractMethodError, SemanticError
+from ccai.interop.protocols.tasker.taskercontroller import ClientTaskerController, TaskerController
+from ccai.interop.protocols.tasker.taskernode import TaskerClientNode
 from ccai.interop.protocols.tasker.tasking import TaskingIdentity, Tasking
 from ccai.interop.protocols.tasker.taskingevent import TaskingEvent
 from ccai.interop.protocols.tasker.taskeraspects import TaskerAspects
-from ccai.testbase.mocking import create_module_patch
+from ccai.testbase.mocking import create_class_patch, create_module_patch
 from ccai.testbase.results.model.taskingresult import TaskingResult
 import time
 
@@ -117,4 +119,74 @@ def test_wait_for_tasking_results_returns_results() -> None:
         results = controller.wait_for_tasking_results([p1, p2], aspects)
 
     testbase.assert_equal(results, [r1, r2])
+    return
+
+
+class FakeNetworkClient:
+    """
+        A network client exposing the ``ipaddr`` that :class:`ClientTaskerController` reads.
+    """
+
+    def __init__(self, ipaddr: str):
+        self.ipaddr = ipaddr
+        return
+
+
+def test_base_start_tasker_network_accepts_the_clients_parameter() -> None:
+    """
+        The abstract ``TaskerController.start_tasker_network`` declares the optional ``clients`` parameter that
+        the client controller override uses, so a call through the base type reaches the abstract method error
+        instead of failing with a TypeError for the unexpected argument.
+    """
+    controller = TaskerController()
+
+    raised = None
+    try:
+        controller.start_tasker_network([FakeNetworkClient("1.2.3.4")], output_directory="/tmp/out")
+    except AbstractMethodError as xcpt:
+        raised = xcpt
+
+    testbase.assert_true(raised is not None, "AbstractMethodError raised by the abstract start_tasker_network")
+    testbase.assert_true("start_tasker_network" in str(raised), "the error names the method to overload")
+    return
+
+
+def test_client_start_tasker_network_without_clients_raises_semantic_error() -> None:
+    """
+        ``ClientTaskerController.start_tasker_network`` still requires its clients; calling it without them
+        raises a SemanticError that names the parameter and leaves the network unstarted.
+    """
+    controller = ClientTaskerController()
+
+    raised = None
+    try:
+        controller.start_tasker_network()
+    except SemanticError as xcpt:
+        raised = xcpt
+
+    testbase.assert_true(raised is not None, "SemanticError raised when 'clients' is missing")
+    testbase.assert_true("'clients'" in str(raised), "the error names the missing 'clients' parameter")
+    testbase.assert_equal(controller._network_started, False)
+    testbase.assert_equal(controller.tasker_nodes, [])
+    return
+
+
+def test_client_start_tasker_network_opens_a_session_per_client() -> None:
+    """
+        The positional ``clients`` call used by existing callers still starts a node for every client.
+    """
+    controller = ClientTaskerController()
+    clients = [FakeNetworkClient("10.0.0.1"), FakeNetworkClient("10.0.0.2")]
+
+    opened = []
+
+    with create_class_patch(TaskerClientNode, "session_open") as mock_open:
+        mock_open.configure(side_effect=lambda **kwargs: opened.append(kwargs))
+        controller.start_tasker_network(clients, output_directory="/tmp/out")
+
+    testbase.assert_equal(controller._network_started, True)
+    testbase.assert_equal([node.ipaddr for node in controller.tasker_nodes], ["10.0.0.1", "10.0.0.2"])
+    testbase.assert_equal([entry["worker"] for entry in opened], ["10.0.0.1", "10.0.0.2"])
+    testbase.assert_equal([entry["wref"] for entry in opened], ["0", "1"])
+    testbase.assert_equal([entry["output_directory"] for entry in opened], ["/tmp/out", "/tmp/out"])
     return

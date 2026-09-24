@@ -25,6 +25,7 @@ from ccai.testbase.results.model.progressinfo import ProgressInfo
 from ccai.testbase.results.model.progressdelivery import SummaryProgressDelivery
 
 from ccai.interop.protocols.tasker.taskingresultpromise import TaskingResultPromise
+from ccai.interop.protocols.tasker.taskingprogressmonitor import TaskingProgressMonitor
 from ccai.interop.protocols.tasker.taskeraspects import (
     TaskerAspects,
     DEFAULT_TASKER_ASPECTS,
@@ -338,17 +339,25 @@ class TaskerNode:
     ) -> TaskingResultPromise:
         """
             Execute a tasking on the remote node.
-            
+
+            Summary progress is pulled by the controller side: when a summary progress delivery is given (or
+            the node was created with one), a :class:`TaskingProgressMonitor` is attached to the returned
+            promise.  It polls the progress of the tasking every ``progress_interval`` seconds and passes it
+            to ``progress_callback`` until the tasking completes or the promise is closed.  The delivery is
+            not sent to the remote tasker because its callback runs locally.
+
             :param module_name: Name of the module containing the tasking.
             :param tasking_name: Name of the tasking class to execute.
-            :param summary_progress: Optional summary progress delivery instance.
+            :param summary_progress: Optional summary progress delivery instance, defaults to the one the node
+                                     was created with.
             :param aspects: Optional tasker aspects controlling execution.
             :param kwargs: Additional parameters passed to the tasking.
-            
+
             :returns: A :class:`TaskingResultPromise` tracking the tasking.
         """
 
-        # We are not going to automatically close this as there may be
+        # We are not going to automatically close this connection here, the promise owns it and closes it
+        # when the promise is closed, because the remote end may use NetRef objects served over it.
         client = self._create_connection()
 
         responder = rpyc.BgServingThread(client)
@@ -370,6 +379,10 @@ class TaskerNode:
             **kwargs
         )
 
+        progress_monitor = None
+        if summary_progress is not None:
+            progress_monitor = TaskingProgressMonitor(summary_progress, [])
+
         promise = TaskingResultPromise(
             client,
             responder,
@@ -379,7 +392,12 @@ class TaskerNode:
             taskref_info["log_dir"],
             self._session_id,
             self,
+            progress_monitor=progress_monitor,
         )
+
+        if progress_monitor is not None:
+            progress_monitor.add_promise(promise)
+            progress_monitor.start()
 
         return promise
 

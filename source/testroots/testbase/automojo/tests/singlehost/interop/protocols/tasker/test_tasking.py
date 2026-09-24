@@ -198,3 +198,89 @@ def test_mark_errored_records_a_fallback_detail_when_the_traceback_detail_fails(
     progress = task._progress_queue.get_nowait()
     testbase.assert_equal(progress.status, ProgressCode.Errored)
     return
+
+
+class RecordingHandler(logging.Handler):
+    """
+        A logging handler that keeps the records it receives.
+    """
+
+    def __init__(self):
+        super().__init__(level=logging.DEBUG)
+        self.records = []
+        return
+
+    def emit(self, record: logging.LogRecord):
+        self.records.append(record)
+        return
+
+
+def _create_recording_tasking(tmpdir, logger_name: str):
+    """
+        Creates a tasking, ready to be marked errored or failed, whose logger records what it logs.
+    """
+    task = create_tasking(tmpdir)
+
+    handler = RecordingHandler()
+    logger = logging.getLogger(logger_name)
+    logger.setLevel(logging.DEBUG)
+    logger.propagate = False
+    logger.addHandler(handler)
+    task._logger = logger
+
+    task._result = task.create_tasking_result("tid", task.full_name, "pid", DummyTasking.PREFIX)
+    task._progress_queue = queue.Queue()
+    task.mark_progress_start()
+    return task, handler
+
+
+def _assert_logged_traceback_text(handler: RecordingHandler, extype: str, exmsg: str):
+    """
+        Checks that the error logged for the tasking is the traceback text and not the repr of a list of lines.
+    """
+    testbase.assert_equal(len(handler.records), 1)
+    logged = handler.records[0].getMessage()
+
+    testbase.assert_true(isinstance(handler.records[0].msg, str), "the logged message is a string")
+    first_line = logged.split(os.linesep)[0]
+    testbase.assert_true(first_line.startswith(f"{extype}: "), "the log starts with the exception line")
+    testbase.assert_true(exmsg in first_line, "the exception line carries the exception message")
+    testbase.assert_true(os.linesep + "Traceback (most recent call first):" in logged, "the traceback lines are joined")
+    testbase.assert_equal(logged.startswith("["), False)
+    return
+
+
+def test_mark_errored_logs_the_traceback_as_text():
+    """
+        mark_errored logs the formatted traceback as lines of text instead of the repr of the list returned by
+        format_traceback_detail.
+    """
+    tmp_path = tempfile.mkdtemp()
+    task, handler = _create_recording_tasking(tmp_path, "test_mark_errored_logs_the_traceback_as_text")
+
+    try:
+        raise ValueError("errored problem")
+    except ValueError as err:
+        task.mark_errored(err)
+
+    _assert_logged_traceback_text(handler, "ValueError", "errored problem")
+    testbase.assert_equal(task.task_status, ProgressCode.Errored)
+    return
+
+
+def test_mark_failed_logs_the_traceback_as_text():
+    """
+        mark_failed logs the formatted traceback as lines of text instead of the repr of the list returned by
+        format_traceback_detail.
+    """
+    tmp_path = tempfile.mkdtemp()
+    task, handler = _create_recording_tasking(tmp_path, "test_mark_failed_logs_the_traceback_as_text")
+
+    try:
+        raise AssertionError("failed check")
+    except AssertionError as err:
+        task.mark_failed(err)
+
+    _assert_logged_traceback_text(handler, "AssertionError", "failed check")
+    testbase.assert_equal(task.task_status, ProgressCode.Failed)
+    return
