@@ -24,6 +24,10 @@ dependencies = [
     "requests>=2.32.3,<3.0.0",
 ]
 
+[project.urls]
+Repository = "https://github.com/code-craft-ai-company/codecraftai-interop-ext-tasker"
+Issues = "https://github.com/code-craft-ai-company/codecraftai-interop-ext-tasker/issues"
+
 [dependency-groups]
 dev = []
 
