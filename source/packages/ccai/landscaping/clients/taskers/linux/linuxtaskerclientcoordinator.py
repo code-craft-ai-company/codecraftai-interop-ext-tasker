@@ -17,7 +17,7 @@ from ccai.credentials.basecredential import BaseCredential
 from ccai.landscaping.clients.clientcoordinatorbase import ClientCoordinatorBase
 
 from ccai.interop.protocols.ssh.sshagent import SshAgent
-from ccai.landscaping.coordinators.integrationclasses import INTEGRATION_CLASS_NETWORK_SSH
+from ccai.landscaping.integrationclasses import INTEGRATION_CLASS_NETWORK_SSH
 
 from ccai.landscaping.clients.taskers.constants import INTEGRATION_CLASS_FOR_LINUX_TASKER_CLIENT
 from ccai.landscaping.clients.taskers.linux.linuxtaskerclient import LinuxTaskerClient

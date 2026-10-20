@@ -1,6 +1,6 @@
 [project]
 name = "codecraftai-interop-ext-tasker"
-version = "1.3.1"
+version = "1.3.2"
 description = "Code Craft AI - Tasker Interop Extensions"
 readme = "README.rst"
 license = "LicenseRef-CodeCraftAI-Source-Available"
